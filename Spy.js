@@ -258,7 +258,8 @@ function playGame() {
     case "rt": {
       if (mapLocationIs === "yes") {
         mapLocation = 1;
-        gameMessage = "You are in the elevator grid";
+        gameMessage =
+          "You are in the elevator grid press the green button with green or the red button with red";
         beenRight1[0] = "yes";
         break;
       } else {
@@ -309,15 +310,45 @@ function playGame() {
       }
     }
     case "elev": {
+      const agentsKnown = knowAgents.find(gnt => gnt == "yes");
       if (mapLocationIs === "yes") {
         mapLocation = 1;
-        if (gridon) {
-          gameMessage = "you are now on level 3 type floor 1 to see details";
-          break;
+        if (gridOn) {
+          if (agentsKnown) {
+            gameMessage = "you are now on level 3 type floor 1 to see details";
+            break;
+          } else {
+            gameMessage =
+              "you forgot that there are agents there right now you have a bigger problem you are in prison";
+            break;
+          }
         } else {
-          console.log("cmd to soon");
+          gameMessage = "";
           break;
         }
+      } else {
+        console.log("cmd to soon");
+        break;
+      }
+    }
+    case "red": {
+      const beenRight1A = beenRight1.find(br1 => br1 === "yes");
+      if (beenRight1A === "yes") {
+        gameMessage =
+          "why would you press a red button wait thats right because green is a trap the elevator that isn't damaged is now online try the elevator with elev or go back to the hallway with forward";
+        gridOn[0] = "yes";
+        break;
+      } else {
+        console.log("cmd to soon");
+        break;
+      }
+    }
+    case "green": {
+      const beenLeft1A = beenLeft1.find(bl1 => bl1 === "yes");
+      if (beenLeft1A) {
+        gameMessage =
+          "great job you pressed the green button wait what its a trap your in prison";
+        break;
       } else {
         console.log("cmd to soon");
         break;
