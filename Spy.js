@@ -207,7 +207,9 @@ function playGame() {
       if (maplocation === 1) {
         gameMessage =
           "I dont know about you but i didnt feel good about that door but lets see we can go left of right for left use lf for right use rt";
+        break;
       } else {
+        break;
       }
     }
   }
