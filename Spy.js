@@ -57,12 +57,26 @@ var insideInventory = [];
 
 var action = "";
 
+var Sorry = document.querySelector("#Sorry");
 var output = document.querySelector("#output");
 var input = document.querySelector("#input");
 var gameMessageDiv = document.querySelector("#text");
 Inventory = document.querySelector("#Inventory");
-var gameMessage =
-  "Hello Matt you can go right to the barn with r or left to the garage with l";
+
+if (mapLocation === 0) {
+  var gameMessage =
+    "Hello Matt you can go right to the barn with r or left to the garage with l";
+} else {
+  if (mapLocation === 1) {
+    gameMessage =
+      "well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
+  } else {
+    if (mapLocation === 2) {
+      gameMessage = "";
+    } else {
+    }
+  }
+}
 var image = document.querySelector("img");
 
 var button = document.querySelector("button");
@@ -187,7 +201,7 @@ function playGame() {
     case "lobby": {
       if (mapLocationIs === 1) {
         mapLocation = 1;
-        mapLocation = window.localStorage;
+        localStorage.setItem("mapLocation", 1);
         gameMessage =
           "well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
         delete insideInventory[1];
@@ -319,7 +333,7 @@ function playGame() {
         mapLocation = 1;
         if (gridOn) {
           if (agentsKnown) {
-            gameMessage = "you are now on level 3 type floor 1 to see details";
+            gameMessage = "you are now on level 3 type floor1 to see details";
             mapLocationIs = 2;
             mapLocation = 2;
             break;
@@ -366,12 +380,20 @@ function playGame() {
         break;
       }
     }
+    case "floor1": {
+      if ((mapLocationIs = 2)) {
+        localStorage.clear();
+        localStorage.setItem("mapLocation", 1);
+      } else {
+      }
+    }
   }
 
   render();
 }
 
 function render() {
+  mapLocation = localStorage.getItem("mapLocation");
   output.innerHTML = map[mapLocation];
   image.src = "images/" + images[mapLocation];
 
