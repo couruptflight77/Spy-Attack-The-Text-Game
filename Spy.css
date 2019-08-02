@@ -1,0 +1,32 @@
+* {
+  font-style: italic;
+  text-align: center;
+  font-family: "Asap", sans-serif;
+}
+
+.button {
+  background-color: limegreen;
+  color: darkorange;
+}
+
+h1 {
+  font-size: 30px;
+  color: darkorange;
+}
+
+#input {
+  color: darkorange;
+}
+
+#output {
+  color: darkorange;
+  font-size: 20px;
+}
+
+#Inventory {
+  font-size: 20px;
+}
+
+#text {
+  font-size: 20px;
+}
