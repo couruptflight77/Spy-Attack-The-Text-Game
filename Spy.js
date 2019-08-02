@@ -153,6 +153,7 @@ function playGame() {
           gameMessage =
             "you have seen in the dark you found the trapdoor type lobby for details";
           mapLocation = 1;
+          mapLocationIs = 1;
           break;
         } else {
           gameMessage =
@@ -172,18 +173,18 @@ function playGame() {
       break;
     }
     case "lobby": {
-      if (mapLocation === 1) {
+      if (mapLocationIs === 1) {
+        mapLocation = 1;
         mapLocation = window.localStorage;
-        console.log("works");
         gameMessage =
           "well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
       } else {
-        console.log("fail");
         console.log("cmd to soon");
       }
     }
     case "lby": {
-      if (mapLocation === 1) {
+      if (mapLocationIs === 1) {
+        mapLocation = 1;
         gameMessage =
           "You see two agents near the elevator rack there is a down one elevator that is operational but the others are damaged for some reason you need to get the agents to move if you take to long agents will find you and put you in prison you can try to pass by with a uniform that is on the rack next to you with uni or try to go back into the hallway behind you with hall";
         break;
@@ -193,7 +194,8 @@ function playGame() {
       }
     }
     case "uni": {
-      if (mapLocation === 1) {
+      if (mapLocationIs === 1) {
+        mapLocation = 1;
         gameMessage =
           "well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER they grab you you are in prison and no one frees you";
         reloading = setTimeout(reload, 10000);
@@ -203,7 +205,8 @@ function playGame() {
       }
     }
     case "hall": {
-      if (mapLocation === 1) {
+      if (mapLocationIs === 1) {
+        mapLocation = 1;
         gameMessage =
           "you are smart the uniform probably would get you caught but you still need to walk down or enter the room to your right to walk further use forward or go into the room with door";
         hall[0] = "yes";
@@ -215,7 +218,8 @@ function playGame() {
     }
     case "forward": {
       const hallway = hall.find(walk => walk == "yes");
-      if (maplocation === 1) {
+      if (mapLocationIs === 1) {
+        mapLocation = 1;
         if (hallway === "yes") {
           gameMessage =
             "I dont know about you but i didnt feel good about that door but lets see we can go left of right for left use lf for right use rt";
