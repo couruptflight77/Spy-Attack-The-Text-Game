@@ -29,8 +29,6 @@ var playersInput = "";
 
 var commands = [];
 
-var onRoof = [];
-
 var inBuilding = [];
 
 var beenLeft = [];
@@ -112,7 +110,6 @@ function playGame() {
       const hasLadder = insideInventory.find(inv => inv === "ladder");
       if (hasLadder === "ladder") {
         ladderPlaced[0] = "yes";
-        onRoof[0] = "yes";
         delete insideInventory[0];
         gameMessage = "use climb to view options";
         break;
@@ -132,28 +129,18 @@ function playGame() {
     }
 
     case "chance": {
-      if (onRoof === "yes") {
-        insideInventory[3] = "goggles";
-        gameMessage =
-          "you can see in the industrial area if you can get down use climb to go back";
-        console.log("problem unsolved");
-
-        break;
-      } else {
-        break;
-      }
+      insideInventory[3] = "goggles";
+      gameMessage =
+        "you can see in the industrial area if you can get down use climb to go back";
+      break;
     }
     case "grapple": {
       const hasG = insideInventory.find(gog => gog === "goggles");
       if (hasG === "goggles") {
-        if (onRoof === "yes") {
-          gameMessage =
-            "you have seen in the dark you found the trapdoor type lobby for details";
-          mapLocation = 1;
-          break;
-        } else {
-          break;
-        }
+        gameMessage =
+          "you have seen in the dark you found the trapdoor type lobby for details";
+        mapLocation = 1;
+        break;
       } else {
         gameMessage =
           "you are dead you had jumped in the dark you blindly get stabed by a pike of metal";
@@ -227,8 +214,4 @@ function render() {
 
 function reload() {
   location.reload();
-}
-
-function roof() {
-  onRoof = "yes";
 }
