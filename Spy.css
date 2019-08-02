@@ -21,6 +21,8 @@ h1 {
 #output {
   color: darkorange;
   font-size: 20px;
+  padding-bottom: 20px;
+  padding-top: 5px;
 }
 
 #Inventory {
@@ -29,4 +31,11 @@ h1 {
 
 #text {
   font-size: 20px;
+}
+
+.Border {
+  border: transparent 0px;
+  height: 1px;
+  background: darkorange;
+  padding: 0px;
 }
