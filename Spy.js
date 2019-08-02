@@ -247,3 +247,12 @@ function render() {
 function reload() {
   location.reload();
 }
+
+function textReset() {
+  document.getElementById("input").reset();
+}
+
+$("#button").click(function() {
+  $("#Input")[0].reset();
+  return false; // prevent submitting
+});
