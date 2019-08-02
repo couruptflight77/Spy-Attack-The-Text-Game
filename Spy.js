@@ -225,6 +225,7 @@ function playGame() {
           break;
         } else {
           console.log("cmd to soon");
+          break;
         }
       } else {
         console.log("cmd to soon");
@@ -234,7 +235,8 @@ function playGame() {
     case "lf": {
       if (mapLocationIs === "yes") {
         mapLocation = 1;
-        gameMessage = "";
+        gameMessage =
+          "You are in a room with a comm to each agent and a video camera station use video for cameras or comm for the comm";
         break;
       } else {
         break;
@@ -243,7 +245,7 @@ function playGame() {
     case "rt": {
       if (mapLocationIs === "yes") {
         mapLocation = 1;
-        gameMessage = "";
+        gameMessage = "You are in the ";
         break;
       } else {
         break;
