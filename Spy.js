@@ -29,6 +29,10 @@ var playersInput = "";
 
 var commands = [];
 
+var beenLeft1 = [];
+
+var beenRight1 = [];
+
 var hall = [];
 
 var inBuilding = [];
@@ -237,6 +241,7 @@ function playGame() {
         mapLocation = 1;
         gameMessage =
           "You are in a room with a comm to each agent and a video camera station use video for cameras or comm for the comm";
+        beenLeft1[0] = "yes";
         break;
       } else {
         break;
@@ -245,7 +250,8 @@ function playGame() {
     case "rt": {
       if (mapLocationIs === "yes") {
         mapLocation = 1;
-        gameMessage = "You are in the ";
+        gameMessage = "You are in the elevator grid";
+        beenRight1[0] = "yes";
         break;
       } else {
         break;
@@ -254,7 +260,28 @@ function playGame() {
     case "strt": {
       if (mapLocationIs === "yes") {
         mapLocation = 1;
+        gameMessage =
+          "man why do traps have to be so common you step on a part of the carpet and chains suround you, you are stuck in prison";
+        reloading = setTimeout(reload, 10000);
+        break;
+      } else {
+        break;
+      }
+    }
+    case "comm": {
+      if (mapLocationIs === "yes") {
+        mapLocation = 1;
         gameMessage = "";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "video": {
+      if (mapLocationIs === "yes") {
+        mapLocation = 1;
+        gameMessage =
+          "the two agents are agent lightman and agent grant wait you think ou my i am so lucky agent grant would recognise me";
         break;
       } else {
         break;
