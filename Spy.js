@@ -221,13 +221,40 @@ function playGame() {
         mapLocation = 1;
         if (hallway === "yes") {
           gameMessage =
-            "I dont know about you but i didnt feel good about that door but lets see we can go left or right or straight for left use lf for right use rt";
+            "I dont know about you but i didnt feel good about that door but lets see we can go left or right or straight with strt for left use lf for right use rt";
           break;
         } else {
           console.log("cmd to soon");
         }
       } else {
         console.log("cmd to soon");
+        break;
+      }
+    }
+    case "lf": {
+      if (mapLocationIs === "yes") {
+        mapLocation = 1;
+        gameMessage = "";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "rt": {
+      if (mapLocationIs === "yes") {
+        mapLocation = 1;
+        gameMessage = "";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "strt": {
+      if (mapLocationIs === "yes") {
+        mapLocation = 1;
+        gameMessage = "";
+        break;
+      } else {
         break;
       }
     }
