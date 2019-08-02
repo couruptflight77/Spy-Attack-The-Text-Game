@@ -23,6 +23,8 @@ images[7] = "Escape.jpg";
 
 var mapLocation = 0;
 
+var mapLocationIs;
+
 var reloading;
 
 var playersInput = "";
@@ -188,6 +190,7 @@ function playGame() {
         break;
       } else {
         console.log("cmd to soon");
+        break;
       }
     }
     case "lby": {
