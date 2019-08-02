@@ -29,6 +29,8 @@ var playersInput = "";
 
 var commands = [];
 
+var hall = [];
+
 var inBuilding = [];
 
 var beenLeft = [];
@@ -100,10 +102,11 @@ function playGame() {
       if (canGetLadder) {
         insideInventory[0] = "ladder";
         gameMessage = "You got a ladder press b to go back";
+        break;
       } else {
+        console.log("cmd to soon");
         break;
       }
-      break;
     }
 
     case "ladder": {
@@ -114,6 +117,7 @@ function playGame() {
         gameMessage = "use climb to view options";
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -124,27 +128,40 @@ function playGame() {
           "you are on the roof sorry about that the first level is the top and yeah well its underground the first level looks like an abandon industrial building you can try the vent with vent or go back with b or you can search the building it may be for protecting the base it may have troops in there your choice you can go in with chance or your other option of grappling down throught a missing pannel in the skylight thats painted black and does not give off light go under the black cloth and grapple down with grapple";
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
 
     case "chance": {
-      insideInventory[3] = "goggles";
-      gameMessage =
-        "you can see in the industrial area if you can get down use climb to go back";
-      break;
-    }
-    case "grapple": {
-      const hasG = insideInventory.find(gog => gog === "goggles");
-      if (hasG === "goggles") {
+      const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
+      if (hasLadderPlaced) {
+        insideInventory[3] = "goggles";
         gameMessage =
-          "you have seen in the dark you found the trapdoor type lobby for details";
-        mapLocation = 1;
+          "you can see in the industrial area if you can get down use climb to go back";
         break;
       } else {
-        gameMessage =
-          "you are dead you had jumped in the dark you blindly get stabed by a pike of metal";
-        reloading = setTimeout(reload, 10000);
+        console.log("cmd to soon");
+        break;
+      }
+    }
+    case "grapple": {
+      const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
+      if (hasLadderPlaced) {
+        const hasG = insideInventory.find(gog => gog === "goggles");
+        if (hasG === "goggles") {
+          gameMessage =
+            "you have seen in the dark you found the trapdoor type lobby for details";
+          mapLocation = 1;
+          break;
+        } else {
+          gameMessage =
+            "you are dead you had jumped in the dark you blindly get stabed by a pike of metal";
+          reloading = setTimeout(reload, 10000);
+          break;
+        }
+      } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -162,6 +179,7 @@ function playGame() {
           "well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
       } else {
         console.log("fail");
+        console.log("cmd to soon");
       }
     }
     case "lby": {
@@ -170,6 +188,7 @@ function playGame() {
           "You see two agents near the elevator rack there is a down one elevator that is operational but the others are damaged for some reason you need to get the agents to move if you take to long agents will find you and put you in prison you can try to pass by with a uniform that is on the rack next to you with uni or try to go back into the hallway behind you with hall";
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -177,7 +196,9 @@ function playGame() {
       if (mapLocation === 1) {
         gameMessage =
           "well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER they grab you you are in prison and no one frees you";
+        reloading = setTimeout(reload, 10000);
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -185,17 +206,25 @@ function playGame() {
       if (mapLocation === 1) {
         gameMessage =
           "you are smart the uniform probably would get you caught but you still need to walk down or enter the room to your right to walk further use forward or go into the room with door";
+        hall[0] = "yes";
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
     case "forward": {
+      const hallway = hall.find(walk => walk == "yes");
       if (maplocation === 1) {
-        gameMessage =
-          "I dont know about you but i didnt feel good about that door but lets see we can go left of right for left use lf for right use rt";
-        break;
+        if (hallway === "yes") {
+          gameMessage =
+            "I dont know about you but i didnt feel good about that door but lets see we can go left of right for left use lf for right use rt";
+          break;
+        } else {
+          console.log("cmd to soon");
+        }
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
