@@ -196,7 +196,8 @@ function playGame() {
     }
     case "hall": {
       if (mapLocation === 1) {
-        gameMessage = "you are smart the uniform probably would get you caught";
+        gameMessage =
+          "you are smart the uniform probably would get you caught but you still need to walk down or enter the room to your right to walk further use forward or go into the room with door";
         break;
       } else {
         break;
