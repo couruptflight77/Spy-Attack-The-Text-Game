@@ -41,7 +41,7 @@ var hall = [];
 
 var gridOn = [];
 
-var hall = [];
+var cmdFor = [];
 
 var inBuilding = [];
 
@@ -57,27 +57,17 @@ var insideInventory = [];
 
 var action = "";
 
+var gameMessage =
+  "Hello Matt you can go right to the barn with r or left to the garage with l";
+insideInventory[0] = "grapple";
+
 var Sorry = document.querySelector("#Sorry");
 var output = document.querySelector("#output");
 var input = document.querySelector("#input");
 var gameMessageDiv = document.querySelector("#text");
-Inventory = document.querySelector("#Inventory");
-
-if (mapLocation === 0) {
-  var gameMessage =
-    "Hello Matt you can go right to the barn with r or left to the garage with l";
-} else {
-  if (mapLocation === 1) {
-    gameMessage =
-      "well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
-  } else {
-    if (mapLocation === 2) {
-      gameMessage = "";
-    } else {
-    }
-  }
-}
+var Inventory = document.querySelector("#Inventory");
 var image = document.querySelector("img");
+var cmdfor = document.querySelector("#cmdfor");
 
 var button = document.querySelector("button");
 button.style.cursor = "pointer";
@@ -95,11 +85,13 @@ function playGame() {
     case "r": {
       beenRight[0] = "yes";
       gameMessage = "you are in a barn get the ladder with pl or leave with b";
+      cmdFor = [0] = "r"
       break;
     }
     case "l": {
       beenLeft[0] = "yes";
       gameMessage = "you are in a garage leave with b";
+      cmdFor = [0] = "l"
       break;
     }
     case "b": {
@@ -126,7 +118,7 @@ function playGame() {
     case "pl": {
       const canGetLadder = beenRight.find(right => right === "yes");
       if (canGetLadder) {
-        insideInventory[0] = "ladder";
+        insideInventory[1] = "ladder";
         gameMessage = "You got a ladder press b to go back";
         break;
       } else {
@@ -139,7 +131,7 @@ function playGame() {
       const hasLadder = insideInventory.find(inv => inv === "ladder");
       if (hasLadder === "ladder") {
         ladderPlaced[0] = "yes";
-        delete insideInventory[0];
+        delete insideInventory[1];
         gameMessage = "use climb to view options";
         break;
       } else {
@@ -180,6 +172,7 @@ function playGame() {
             "you have seen in the dark you found the trapdoor type lobby for details";
           mapLocation = 1;
           mapLocationIs = 1;
+          insideInventory[0] = "grapple";
           break;
         } else {
           gameMessage =
@@ -382,8 +375,7 @@ function playGame() {
     }
     case "floor1": {
       if ((mapLocationIs = 2)) {
-        localStorage.clear();
-        localStorage.setItem("mapLocation", 1);
+        mapLocation = 2;
       } else {
       }
     }
@@ -393,18 +385,14 @@ function playGame() {
 }
 
 function render() {
-  mapLocation = localStorage.getItem("mapLocation");
   output.innerHTML = map[mapLocation];
   image.src = "images/" + images[mapLocation];
 
   gameMessageDiv.innerHTML = "<br><em>" + gameMessage + "</em>";
   Inventory.innerHTML = "<br><em>" + insideInventory + "</em>";
+  cmdFor.innerHTML += "<br><em>" + playersInput + "</em>";
 }
 
 function reload() {
   location.reload();
-}
-
-function textReset() {
-  document.getElementById("input").reset();
 }
