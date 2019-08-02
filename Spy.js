@@ -33,6 +33,8 @@ var beenLeft1 = [];
 
 var beenRight1 = [];
 
+var knowAgents = [];
+
 var hall = [];
 
 var inBuilding = [];
@@ -140,7 +142,7 @@ function playGame() {
     case "chance": {
       const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
       if (hasLadderPlaced) {
-        insideInventory[3] = "goggles";
+        insideInventory[1] = "goggles";
         gameMessage =
           "you can see in the industrial area if you can get down use climb to go back";
         break;
@@ -182,6 +184,8 @@ function playGame() {
         mapLocation = window.localStorage;
         gameMessage =
           "well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
+        delete insideInventory[1];
+        break;
       } else {
         console.log("cmd to soon");
       }
@@ -244,6 +248,7 @@ function playGame() {
         beenLeft1[0] = "yes";
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -254,6 +259,7 @@ function playGame() {
         beenRight1[0] = "yes";
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -265,15 +271,25 @@ function playGame() {
         reloading = setTimeout(reload, 10000);
         break;
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
     case "comm": {
+      const agentsKnown = knowAgents.find(gnt => gnt == "yes");
       if (mapLocationIs === "yes") {
         mapLocation = 1;
-        gameMessage = "";
-        break;
+        if (agentsKnown === "yes") {
+          gameMessage =
+            "There gone you can try to go throught the elevators with elev or go back to the hall with forward";
+          break;
+        } else {
+          gameMessage =
+            "You call over there comms you have a new mission to make a stakeout of the NSA's spy base and you lose you are locked up";
+          break;
+        }
       } else {
+        console.log("cmd to soon");
         break;
       }
     }
@@ -281,9 +297,26 @@ function playGame() {
       if (mapLocationIs === "yes") {
         mapLocation = 1;
         gameMessage =
-          "the two agents are agent lightman and agent grant wait you think ou my i am so lucky agent grant would recognise me";
+          "the two agents are agent lightman and agent grant wait you think man am i am so lucky agent grant would recognise me use comm to tell them to go on a suitable mission";
+        knowAgents[0] = "yes";
         break;
       } else {
+        console.log("cmd to soon");
+        break;
+      }
+    }
+    case "elev": {
+      if (mapLocationIs === "yes") {
+        mapLocation = 1;
+        if (gridon) {
+          gameMessage = "you are now on level 3 type floor 1 to see details";
+          break;
+        } else {
+          console.log("cmd to soon");
+          break;
+        }
+      } else {
+        console.log("cmd to soon");
         break;
       }
     }
