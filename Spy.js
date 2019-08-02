@@ -39,6 +39,10 @@ var knowAgents = [];
 
 var hall = [];
 
+var gridOn = [];
+
+var hall = [];
+
 var inBuilding = [];
 
 var beenLeft = [];
@@ -244,7 +248,7 @@ function playGame() {
       }
     }
     case "lf": {
-      if (mapLocationIs === "yes") {
+      if (mapLocationIs === 1) {
         mapLocation = 1;
         gameMessage =
           "You are in a room with a comm to each agent and a video camera station use video for cameras or comm for the comm";
@@ -256,7 +260,7 @@ function playGame() {
       }
     }
     case "rt": {
-      if (mapLocationIs === "yes") {
+      if (mapLocationIs === 1) {
         mapLocation = 1;
         gameMessage =
           "You are in the elevator grid press the green button with green or the red button with red";
@@ -268,7 +272,7 @@ function playGame() {
       }
     }
     case "strt": {
-      if (mapLocationIs === "yes") {
+      if (mapLocationIs === 1) {
         mapLocation = 1;
         gameMessage =
           "man why do traps have to be so common you step on a part of the carpet and chains suround you, you are stuck in prison";
@@ -281,7 +285,7 @@ function playGame() {
     }
     case "comm": {
       const agentsKnown = knowAgents.find(gnt => gnt == "yes");
-      if (mapLocationIs === "yes") {
+      if (mapLocationIs === 1) {
         mapLocation = 1;
         if (agentsKnown === "yes") {
           gameMessage =
@@ -298,7 +302,7 @@ function playGame() {
       }
     }
     case "video": {
-      if (mapLocationIs === "yes") {
+      if (mapLocationIs === 1) {
         mapLocation = 1;
         gameMessage =
           "the two agents are agent lightman and agent grant wait you think man am i am so lucky agent grant would recognise me use comm to tell them to go on a suitable mission";
@@ -311,11 +315,13 @@ function playGame() {
     }
     case "elev": {
       const agentsKnown = knowAgents.find(gnt => gnt == "yes");
-      if (mapLocationIs === "yes") {
+      if (mapLocationIs === 1) {
         mapLocation = 1;
         if (gridOn) {
           if (agentsKnown) {
             gameMessage = "you are now on level 3 type floor 1 to see details";
+            mapLocationIs = 2;
+            mapLocation = 2;
             break;
           } else {
             gameMessage =
@@ -323,8 +329,14 @@ function playGame() {
             break;
           }
         } else {
-          gameMessage = "";
-          break;
+          if (agentsKnown) {
+            gameMessage =
+              "Dam elevators are off there are agents coming into the lobby";
+            break;
+          } else {
+            gameMessage = "Well i mean agents are there and your now in prison";
+            break;
+          }
         }
       } else {
         console.log("cmd to soon");
