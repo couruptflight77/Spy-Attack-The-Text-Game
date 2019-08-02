@@ -196,8 +196,7 @@ function playGame() {
     case "uni": {
       if (mapLocationIs === 1) {
         mapLocation = 1;
-        gameMessage =
-          "well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER they grab you you are in prison and no one frees you";
+        gameMessage = `"well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER" they grab you you are in prison and no one frees you`;
         reloading = setTimeout(reload, 10000);
       } else {
         console.log("cmd to soon");
@@ -208,7 +207,7 @@ function playGame() {
       if (mapLocationIs === 1) {
         mapLocation = 1;
         gameMessage =
-          "you are smart the uniform probably would get you caught but you still need to walk down or enter the room to your right to walk further use forward or go into the room with door";
+          "you are smart the uniform probably would get you caught but you still need to walk down or enter the room to your left to walk further use forward or go into the room with door";
         hall[0] = "yes";
         break;
       } else {
@@ -222,7 +221,7 @@ function playGame() {
         mapLocation = 1;
         if (hallway === "yes") {
           gameMessage =
-            "I dont know about you but i didnt feel good about that door but lets see we can go left of right for left use lf for right use rt";
+            "I dont know about you but i didnt feel good about that door but lets see we can go left or right or straight for left use lf for right use rt";
           break;
         } else {
           console.log("cmd to soon");
