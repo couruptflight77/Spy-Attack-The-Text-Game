@@ -26,6 +26,8 @@ images[10] = "Military-genetics-results.jpg";
 images[11] = "Military-weather-lab.jpg";
 images[12] = "Military-servers.jpg";
 images[13] = "Military-tracking-lab.png";
+images[14] = "Prision-hatch.jpg";
+images[15] = "starting screen.gif";
 
 var mapLocation = 0;
 
@@ -184,6 +186,7 @@ function playGame() {
           mapLocationIs = 1;
           mapImage = 1;
           delete insideInventory[0];
+          localStorage.setItem("airmakers", "boeing");
           break;
         } else {
           gameMessage =
@@ -206,10 +209,9 @@ function playGame() {
       if (mapLocationIs === 1) {
         mapLocation = 1;
         mapImage = 1;
-        localStorage.setItem("mapLocation", 1);
         gameMessage =
           "Well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
-        delete insideInventory[1];
+        delete insideInventory[0];
         break;
       } else {
         console.log("cmd to soon");
@@ -352,6 +354,7 @@ function playGame() {
             gameMessage = "You are now on level 3 type floor1 to see details";
             mapLocationIs = 2;
             mapLocation = 2;
+            localStorage.setItem("airmakers", "airbus");
             break;
           } else {
             gameMessage =
@@ -419,10 +422,101 @@ function playGame() {
     case "hatch": {
       if (mapLocationis === 2) {
         mapImage = 14;
-        gameMessage = "";
+        gameMessage =
+          "Well i mean it is a good idea to go with the least likly to be true but it in this case is the wrong choice";
+        reloading = setTimeout(reload, 10000);
         break;
       } else {
         console.log("cmd to soon");
+        break;
+      }
+    }
+    case "floor2": {
+      if (mapLoationIs === 2) {
+        localStorage.setItem("airmakers", "piper");
+        break;
+      } else {
+      }
+    }
+    case "floor3": {
+      localStorage.setItem("airmakers", "douglas");
+    }
+    case "floor4": {
+      localStorage.setItem("airmakers", "sopwith");
+    }
+    case "floor5": {
+      localStorage.setItem("airmakers", "scaled");
+    }
+    case "stealth": {
+      localStorage.setItem("airmakers", "lockheed");
+    }
+    case "boeing": {
+      var B747 = localStorage.getItem("airmakers");
+      if (B747 == "boeing") {
+        mapLocationIs = 1;
+        gameMessage = "lobby";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "airbus": {
+      var A320 = localStorage.getItem("airmakers");
+      if (A320 == "airbus") {
+        mapLocationIs = 2;
+        gameMessage = "floor1";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "piper": {
+      var J3 = localStorage.getItem("airmakers");
+      if (J3 == "piper") {
+        mapLocationIs = 3;
+        gameMessage = "floor2";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "douglas": {
+      var DC2 = localStorage.getItem("airmakers");
+      if (DC2 == "douglas") {
+        mapLocationIs = 4;
+        gameMessage = "floor3";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "sopwith": {
+      var Snipe = localStorage.getItem("airmakers");
+      if (Snipe == "sopwith") {
+        mapLocationIs = 5;
+        gameMessage = "floor4";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "scaled": {
+      var SpaceShip1 = localStorage.getItem("airmakers");
+      if (SpaceShip1 == "scaled") {
+        mapLocationIs = 6;
+        gameMessage = "floor5";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "lockheed": {
+      var NightHalk = localStorage.getItem("airmakers");
+      if (NightHalk == "lockheed") {
+        mapLocationIs = 7;
+        gameMessage = "escape";
+        break;
+      } else {
         break;
       }
     }
