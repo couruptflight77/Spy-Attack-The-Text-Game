@@ -33,7 +33,7 @@ images[17] = "Barn.jpg";
 images[18] = "Garage.jpg";
 images[19] = "hallway.jpg";
 images[20] = "Ladder.jpg";
-images[21] = "Night-vision-goggles.jpg";
+images[21] = "Night-vision-googles.jpg";
 images[22] = "Roof.jpg";
 images[23] = "Spy.jpg";
 images[24] = "Vent.jpg";
@@ -50,6 +50,8 @@ var playersInput = "";
 
 var commands = [];
 
+var keyHere = [];
+
 var beenLeft1 = [];
 
 var beenRight1 = [];
@@ -63,6 +65,12 @@ var gtlab = [];
 var mapImage = 0;
 
 var gridOn = [];
+
+var howManyKeys0 = [];
+var howManyKeys1 = [];
+var howManyKeys2 = [];
+var howManyKeys3 = [];
+var howManyKeys4 = [];
 
 var inBuilding = [];
 
@@ -147,7 +155,6 @@ function playGame() {
         break;
       }
     }
-
     case "ladder": {
       const hasLadder = insideInventory.find(inv => inv === "ladder");
       if (hasLadder === "ladder") {
@@ -171,7 +178,6 @@ function playGame() {
         break;
       }
     }
-
     case "chance": {
       const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
       if (hasLadderPlaced) {
@@ -194,7 +200,7 @@ function playGame() {
           mapLocation = 1;
           mapLocationIs = 1;
           mapImage = 1;
-          delete insideInventory[0];
+          delete insideInventory[1];
           localStorage.setItem("airmakers", "boeing");
           break;
         } else {
@@ -406,6 +412,7 @@ function playGame() {
         mapImage = 2;
         gameMessage =
           "You walk into a room you can use the hatch with hatch or the door labeled genetics testing with gt";
+        delete keyHere[0];
         break;
       } else {
         break;
@@ -416,6 +423,7 @@ function playGame() {
         gameMessage =
           "What is this there are computer monitors you can leave with floor1 or go throught the door labeled floor 1 with door1";
         gtlab[0] = "yes";
+        keyHere[0] = "yes";
         mapImage = 10;
         break;
       } else {
@@ -526,28 +534,486 @@ function playGame() {
       const gtl = gtlab.find(lab => lab === "yes");
       if (mapLocationIs === 2) {
         if (gtl === "yes") {
-          gameMessage = "Well this is floor 1 a";
+          gameMessage =
+            "Well this is floor 1 it apears to be abandon but this level has no elevators down but there is stairs to the next level type doorinfo for more info";
         } else {
           break;
         }
         break;
+      }
+    }
+    case "doorinfo": {
+      const gtl = gtlab.find(lab => lab === "yes");
+      if (mapLocationIs === 2) {
+        if (gtl === "yes") {
+          gameMessage =
+            "you can go to the first door with dr1 or the other door with dr2";
+          break;
+        } else {
+          break;
+        }
       } else {
         break;
       }
     }
-    case "": {
-      if (mapLocationIs === 2) {
-        gameMessage = "";
+    case "dr1": {
+      const gtl = gtlab.find(lab => lab === "yes");
+      if (gtl === "yes") {
+        gameMessage =
+          "You walk down a walkway and find a massive hall lucky for you its not in progress go to dr2 with dr2";
         break;
       } else {
         break;
+      }
+    }
+    case "dr2": {
+      const gtl = gtlab.find(lab1 => lab1 === "yes");
+      if (gtl === "yes") {
+        gameMessage =
+          "There are 10 safes and 5 keys man is this going to be hard to decide which i would chose use safe and then the number of the safe you chose like safe1";
+        howManyKeys0[0] = "1";
+        howManyKeys1[0] = "1";
+        howManyKeys2[0] = "1";
+        howManyKeys3[0] = "1";
+        howManyKeys4[0] = "1";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "safe1": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen1 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen1 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe2": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen2 = safeSelected.find(sf1 => sf1 === "2");
+      if (safeChosen2 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe3": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen3 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen3 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe4": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen4 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen4 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe5": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen5 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen5 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe6": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen6 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen6 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe7": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen7 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen7 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe8": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen8 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen8 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe9": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen9 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen9 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    case "safe10": {
+      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
+      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
+      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
+      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
+      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
+      const safeChosen10 = safeSelected.find(sf1 => sf1 === "1");
+      if (safeChosen10 === "yes") {
+        break;
+      } else {
+        if (howManyKeysIn0 === "1") {
+          gameMessage = "";
+          delete howManyKeys0[0];
+          break;
+        } else {
+          if (howManyKeysIn1 === "1") {
+            gameMessage = "";
+            delete howManyKeys1[0];
+            break;
+          } else {
+            if (howManyKeysIn2 === "1") {
+              gameMessage = "";
+              delete howManyKeys2[0];
+              break;
+            } else {
+              if (howManyKeysIn3 === "1") {
+                gameMessage = "";
+                delete howManyKeys3[0];
+                break;
+              } else {
+                if (howManyKeysIn4 === "1") {
+                  gameMessage = "";
+                  delete howManyKeys4[0];
+                  break;
+                } else {
+                  break;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-
   render();
 }
-
 function render() {
   output.innerHTML = map[mapLocation];
   image.src = "images/" + images[mapImage];
