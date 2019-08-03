@@ -28,6 +28,17 @@ images[12] = "Military-servers.jpg";
 images[13] = "Military-tracking-lab.png";
 images[14] = "Prision-hatch.jpg";
 images[15] = "starting screen.gif";
+images[16] = "Forward.jpg";
+images[17] = "Barn.jpg";
+images[18] = "Garage.jpg";
+images[19] = "hallway.jpg";
+images[20] = "Ladder.jpg";
+images[21] = "Night-vision-goggles.jpg";
+images[22] = "Roof.jpg";
+images[23] = "Spy.jpg";
+images[24] = "Vent.jpg";
+images[25] = "Elevator.jpg";
+images[26] = "Door1.jpg";
 
 var mapLocation = 0;
 
@@ -46,6 +57,8 @@ var beenRight1 = [];
 var knowAgents = [];
 
 var hall = [];
+
+var gtlab = [];
 
 var mapImage = 0;
 
@@ -92,13 +105,13 @@ function playGame() {
     case "r": {
       beenRight[0] = "yes";
       gameMessage = "You are in a barn get the ladder with pl or leave with b";
-      mapImage = 0;
+      mapImage = 17;
       break;
     }
     case "l": {
       beenLeft[0] = "yes";
       gameMessage = "You are in a garage leave with b";
-      mapImage = 0;
+      mapImage = 18;
       break;
     }
     case "b": {
@@ -126,12 +139,11 @@ function playGame() {
     case "pl": {
       const canGetLadder = beenRight.find(right => right === "yes");
       if (canGetLadder) {
-        mapImage = 0;
+        mapImage = 17;
         insideInventory[1] = "ladder";
         gameMessage = "You got a ladder press b to go back";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -142,10 +154,9 @@ function playGame() {
         ladderPlaced[0] = "yes";
         delete insideInventory[1];
         gameMessage = "Use climb to view options";
-        mapImage = 0;
+        mapImage = 20;
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -154,10 +165,9 @@ function playGame() {
       if (hasLadderPlaced === "yes") {
         gameMessage =
           "You are on the roof sorry about that the first level is the top and yeah well its underground the first level looks like an abandon industrial building you can try the vent with vent or go back with b or you can search the building it may be for protecting the base it may have troops in there your choice you can go in with chance or your other option of grappling down throught a missing pannel in the skylight thats painted black and does not give off light go under the black cloth and grapple down with grapple";
-        mapImage = 0;
+        mapImage = 22;
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -166,12 +176,11 @@ function playGame() {
       const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
       if (hasLadderPlaced) {
         insideInventory[1] = "goggles";
-        mapImage = 0;
+        mapImage = 21;
         gameMessage =
           "You can see in the industrial area if you can get down use climb to go back";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -195,7 +204,6 @@ function playGame() {
           break;
         }
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -203,6 +211,7 @@ function playGame() {
       gameMessage =
         "Why are you going in a vent that locks you in, your found then your taken prisioner you never escape you live there for the rest of your life";
       reloading = setTimeout(reload, 10000);
+      mapImage = 24;
       break;
     }
     case "lobby": {
@@ -214,7 +223,6 @@ function playGame() {
         delete insideInventory[0];
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -226,31 +234,28 @@ function playGame() {
           "You see two agents near the elevator rack there is a down one elevator that is operational but the others are damaged for some reason you need to get the agents to move if you take to long agents will find you and put you in prison you can try to pass by with a uniform that is on the rack next to you with uni or try to go back into the hallway behind you with hall";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
     case "uni": {
       if (mapLocationIs === 1) {
         mapLocation = 1;
-        mapImage = 1;
+        mapImage = 23;
         gameMessage = `"Well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER" they grab you you are in prison and no one frees you`;
         reloading = setTimeout(reload, 10000);
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
     case "hall": {
       if (mapLocationIs === 1) {
         mapLocation = 1;
-        mapImage = 1;
+        mapImage = 19;
         gameMessage =
           "You are smart the uniform probably would get you caught but you still need to walk down or enter the room to your left to walk further use forward or go into the room with door";
         hall[0] = "yes";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -258,17 +263,15 @@ function playGame() {
       const hallway = hall.find(walk => walk == "yes");
       if (mapLocationIs === 1) {
         mapLocation = 1;
-        mapImage = 1;
+        mapImage = 16;
         if (hallway === "yes") {
           gameMessage =
             "I dont know about you but i didnt feel good about that door but lets see we can go left or right or straight with strt for left use lf for right use rt";
           break;
         } else {
-          console.log("cmd to soon");
           break;
         }
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -281,7 +284,6 @@ function playGame() {
         beenLeft1[0] = "yes";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -294,7 +296,6 @@ function playGame() {
         beenRight1[0] = "yes";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -307,7 +308,6 @@ function playGame() {
         reloading = setTimeout(reload, 10000);
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -327,7 +327,6 @@ function playGame() {
           break;
         }
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -340,7 +339,6 @@ function playGame() {
         knowAgents[0] = "yes";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -348,13 +346,13 @@ function playGame() {
       const agentsKnown = knowAgents.find(gnt => gnt == "yes");
       if (mapLocationIs === 1) {
         mapLocation = 1;
-        mapImage = 2;
+        mapImage = 25;
         if (gridOn) {
           if (agentsKnown) {
             gameMessage = "You are now on level 3 type floor1 to see details";
             mapLocationIs = 2;
             mapLocation = 2;
-            localStorage.setItem("airmakers", "airbus");
+            localStorage.setItem("airmakers1", "airbus");
             break;
           } else {
             gameMessage =
@@ -375,7 +373,6 @@ function playGame() {
           }
         }
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -388,7 +385,6 @@ function playGame() {
         gridOn[0] = "yes";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -401,7 +397,6 @@ function playGame() {
         reloading = setTimeout(reload, 10000);
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -413,11 +408,19 @@ function playGame() {
           "You walk into a room you can use the hatch with hatch or the door labeled genetics testing with gt";
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
     case "gt": {
+      if (mapLocationIs === 2) {
+        gameMessage =
+          "What is this there are computer monitors you can leave with floor1 or go throught the door labeled floor 1 with door1";
+        gtlab[0] = "yes";
+        mapImage = 10;
+        break;
+      } else {
+        break;
+      }
     }
     case "hatch": {
       if (mapLocationis === 2) {
@@ -427,7 +430,6 @@ function playGame() {
         reloading = setTimeout(reload, 10000);
         break;
       } else {
-        console.log("cmd to soon");
         break;
       }
     }
@@ -461,7 +463,7 @@ function playGame() {
       }
     }
     case "airbus": {
-      var A320 = localStorage.getItem("airmakers");
+      var A320 = localStorage.getItem("airmakers1");
       if (A320 == "airbus") {
         mapLocationIs = 2;
         gameMessage = "floor1";
@@ -471,7 +473,7 @@ function playGame() {
       }
     }
     case "piper": {
-      var J3 = localStorage.getItem("airmakers");
+      var J3 = localStorage.getItem("airmakers2");
       if (J3 == "piper") {
         mapLocationIs = 3;
         gameMessage = "floor2";
@@ -481,7 +483,7 @@ function playGame() {
       }
     }
     case "douglas": {
-      var DC2 = localStorage.getItem("airmakers");
+      var DC2 = localStorage.getItem("airmakers3");
       if (DC2 == "douglas") {
         mapLocationIs = 4;
         gameMessage = "floor3";
@@ -491,7 +493,7 @@ function playGame() {
       }
     }
     case "sopwith": {
-      var Snipe = localStorage.getItem("airmakers");
+      var Snipe = localStorage.getItem("airmakers4");
       if (Snipe == "sopwith") {
         mapLocationIs = 5;
         gameMessage = "floor4";
@@ -501,7 +503,7 @@ function playGame() {
       }
     }
     case "scaled": {
-      var SpaceShip1 = localStorage.getItem("airmakers");
+      var SpaceShip1 = localStorage.getItem("airmakers5");
       if (SpaceShip1 == "scaled") {
         mapLocationIs = 6;
         gameMessage = "floor5";
@@ -511,10 +513,31 @@ function playGame() {
       }
     }
     case "lockheed": {
-      var NightHalk = localStorage.getItem("airmakers");
+      var NightHalk = localStorage.getItem("airmakers6");
       if (NightHalk == "lockheed") {
         mapLocationIs = 7;
         gameMessage = "escape";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "door1": {
+      const gtl = gtlab.find(lab => lab === "yes");
+      if (mapLocationIs === 2) {
+        if (gtl === "yes") {
+          gameMessage = "Well this is floor 1 a";
+        } else {
+          break;
+        }
+        break;
+      } else {
+        break;
+      }
+    }
+    case "": {
+      if (mapLocationIs === 2) {
+        gameMessage = "";
         break;
       } else {
         break;
