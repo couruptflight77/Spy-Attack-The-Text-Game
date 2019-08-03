@@ -379,7 +379,7 @@ function playGame() {
     case "red": {
       const beenRight1A = beenRight1.find(br1 => br1 === "yes");
       if (beenRight1A === "yes") {
-        mapImage = 1;
+        mapImage = 9;
         gameMessage =
           "Why would you press a red button wait thats right because green is a trap the elevator that isn't damaged is now online try the elevator with elev or go back to the hallway with forward";
         gridOn[0] = "yes";
@@ -392,6 +392,7 @@ function playGame() {
     case "green": {
       const beenLeft1A = beenLeft1.find(bl1 => bl1 === "yes");
       if (beenLeft1A) {
+        mapImage = 9;
         gameMessage =
           "Great job you pressed the green button wait what its a trap your in prison";
         reloading = setTimeout(reload, 10000);
@@ -407,6 +408,18 @@ function playGame() {
         mapImage = 2;
         gameMessage =
           "You walk into a room you can use the hatch with hatch or the door labeled genetics testing with gt";
+        break;
+      } else {
+        console.log("cmd to soon");
+        break;
+      }
+    }
+    case "gt": {
+    }
+    case "hatch": {
+      if (mapLocationis === 2) {
+        mapImage = 14;
+        gameMessage = "";
         break;
       } else {
         console.log("cmd to soon");
