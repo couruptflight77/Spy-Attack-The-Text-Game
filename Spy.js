@@ -575,6 +575,7 @@ function playGame() {
       );
       if (gtl === "yes") {
         if (safedone === "yes") {
+          safeInventoryCheck;
           if (safeInventoryhas === "StairKey") {
             gameMessage = "";
             break;
@@ -585,6 +586,7 @@ function playGame() {
             break;
           }
         } else {
+          mapImage = 27;
           gameMessage =
             "There are 10 safes and 5 keys man is this going to be hard to decide which i would chose use safe and then the number of the safe you chose like safe1";
           howManyKeys0[0] = "1";
@@ -632,7 +634,7 @@ function playGame() {
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "The safe is empty use dr2 to go back";
+                  gameMessage = "The safe is empty type dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "1";
                   break;
@@ -656,31 +658,31 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
           safeSelected[0] = "2";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
             safeSelected[0] = "2";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
               safeSelected[0] = "2";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
                 safeSelected[0] = "2";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "There is nothing type dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "2";
                   break;
@@ -704,31 +706,34 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "You found an armband you put it on have another turn";
           delete howManyKeys0[0];
           safeSelected[0] = "3";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage =
+              "You found an armband you put it on have another turn";
             delete howManyKeys1[0];
             safeSelected[0] = "3";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage =
+                "You found an armband you put it on have another turn";
               delete howManyKeys2[0];
               safeSelected[0] = "3";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage =
+                  "You found an armband you put it on have another turn";
                 delete howManyKeys3[0];
                 safeSelected[0] = "3";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "You found an armband you put it on type dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "3";
                   break;
@@ -752,31 +757,31 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
           safeSelected[0] = "4";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
             safeSelected[0] = "4";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
               safeSelected[0] = "4";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
                 safeSelected[0] = "4";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "There is nothing use dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "4";
                   break;
@@ -800,31 +805,31 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "You find a voice changer have another turn";
           delete howManyKeys0[0];
           safeSelected[0] = "5";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage = "You find a voice changer have another turn";
             delete howManyKeys1[0];
             safeSelected[0] = "5";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage = "You find a voice changer have another turn";
               delete howManyKeys2[0];
               safeSelected[0] = "5";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage = "You find a voice changer have another turn";
                 delete howManyKeys3[0];
                 safeSelected[0] = "5";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "You find a voice changer use dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "5";
                   break;
@@ -848,31 +853,31 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "You found an axe have another turn";
           delete howManyKeys0[0];
           safeSelected[0] = "6";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage = "You found an axe have another turn";
             delete howManyKeys1[0];
             safeSelected[0] = "6";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage = "You found an axe have another turn";
               delete howManyKeys2[0];
               safeSelected[0] = "6";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage = "You found an axe have another turn";
                 delete howManyKeys3[0];
                 safeSelected[0] = "6";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "You found an axe use dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "6";
                   break;
@@ -896,31 +901,31 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
           safeSelected[0] = "7";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
             safeSelected[0] = "7";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
               safeSelected[0] = "7";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
                 safeSelected[0] = "7";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "There is nothing use dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "7";
                   break;
@@ -1050,31 +1055,31 @@ function playGame() {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
-          gameMessage = "";
+          gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
           safeSelected[0] = "10";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
-            gameMessage = "";
+            gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
             safeSelected[0] = "10";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
-              gameMessage = "";
+              gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
               safeSelected[0] = "10";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
-                gameMessage = "";
+                gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
                 safeSelected[0] = "10";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
-                  gameMessage = "";
+                  gameMessage = "There is nothing use dr2";
                   delete howManyKeys4[0];
                   safeSelected[0] = "10";
                   break;
@@ -1100,4 +1105,22 @@ function render() {
 
 function reload() {
   location.reload();
+}
+
+function safeInventoryCheck() {
+  if (safeChosen === "3") {
+    safeInventory[0] = "Armband";
+  }
+  if (safeChosen === "5") {
+    safeInventory[0] = "VoiceChanger";
+  }
+  if (safeChosen === "6") {
+    safeInventory[0] = "Axe";
+  }
+  if (safeChosen === "8") {
+    safeInventory[0] = "StairKey";
+  }
+  if (safeChosen === "9") {
+    safeInventory[0] = "Usb";
+  }
 }
