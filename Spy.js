@@ -40,6 +40,8 @@ images[24] = "Vent.jpg";
 images[25] = "Elevator.jpg";
 images[26] = "Door1.jpg";
 images[27] = "Safes.jpg";
+images[27] = "Stairs.jpg";
+images[27] = "Axe.jpg";
 
 var mapLocation = 0;
 
@@ -49,9 +51,34 @@ var reloading;
 
 var playersInput = "";
 
+var commandNotFoundText = "";
+
 var commands = [];
 
+var safe1Selected = [];
+var safe2Selected = [];
+var safe3Selected = [];
+var safe4Selected = [];
+var safe5Selected = [];
+var safe6Selected = [];
+var safe7Selected = [];
+var safe8Selected = [];
+var safe9Selected = [];
+var safe10Selected = [];
+
 var keyHere = [];
+
+var safeStairKey = [];
+var safeAxe = [];
+var safeArmband = [];
+var safeVoiceChanger = [];
+var safeUsb = [];
+
+var safesdone = [];
+
+var safeSelected = [];
+
+var safeInventory = [];
 
 var beenLeft1 = [];
 
@@ -95,6 +122,7 @@ var Sorry = document.querySelector("#Sorry");
 var output = document.querySelector("#output");
 var input = document.querySelector("#input");
 var gameMessageDiv = document.querySelector("#text");
+var commandNotFound = document.querySelector("#cmdNtFound");
 var Inventory = document.querySelector("#Inventory");
 var image = document.querySelector("img");
 
@@ -109,6 +137,7 @@ function playGame() {
   playersInput = playersInput.toLowerCase();
 
   action = "";
+  commandNotFoundText = "";
 
   switch (playersInput) {
     case "r": {
@@ -443,10 +472,20 @@ function playGame() {
       }
     }
     case "floor2": {
+      const hasSafeAxe = safeAxe.find(axe => axe === "yes");
       if (mapLoationIs === 2) {
-        localStorage.setItem("airmakers", "piper");
+        if (hasSafeAxe === "yes") {
+          gameMessage = "use axe to chop the wood in front of you";
+          break;
+        } else {
+          gameMessage =
+            "Dam it you need to go back to level 3 floor 1 you dont have the axe";
+          localStorage.removeItem("airmakers2");
+          break;
+        }
         break;
       } else {
+        break;
       }
     }
     case "floor3": {
@@ -576,14 +615,11 @@ function playGame() {
     case "dr2": {
       const gtl = gtlab.find(lab1 => lab1 === "yes");
       const safedone = safesdone.find(cfd => cfd === "yes");
-      const safeInventoryhas = safeInventory.find(
-        labsf => labsf === "StairKey"
-      );
+      const StairKeyhas = safeStairKey.find(labsf => labsf === "yes");
       if (gtl === "yes") {
         if (safedone === "yes") {
-          safeInventoryCheck;
-          if (safeInventoryhas === "StairKey") {
-            gameMessage = "";
+          if (StairKeyhas === "yes") {
+            gameMessage = "Wow how good are you, you can use skey";
             break;
           } else {
             gameMessage =
@@ -594,7 +630,7 @@ function playGame() {
         } else {
           mapImage = 27;
           gameMessage =
-            "There are 10 safes and 5 keys man is this going to be hard to decide which i would chose use safe and then the number of the safe you chose like safe1";
+            "There are 10 safes and 5 keys man is this going to be hard to decide which i would chose use safe and then the number of the safe you chose like safe1. There are five items you must have or your progress will be stoped";
           howManyKeys0[0] = "1";
           howManyKeys1[0] = "1";
           howManyKeys2[0] = "1";
@@ -611,38 +647,38 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen1 = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen1 === "yes") {
+      const firstSafeSelected = safe1Selected.find(sf1 => sf1 === "yes");
+      if (firstSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "The safe is empty try again";
           delete howManyKeys0[0];
-          safeSelected[0] = "1";
+          safe1Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "The safe is empty try again";
             delete howManyKeys1[0];
-            safeSelected[0] = "1";
+            safe1Selected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "The safe is empty try again";
               delete howManyKeys2[0];
-              safeSelected[0] = "1";
+              safe1Selected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "The safe is empty try again";
                 delete howManyKeys3[0];
-                safeSelected[0] = "1";
+                safe1Selected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "The safe is empty type dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "1";
+                  safe1Selected[0] = "yes";
                   break;
                 } else {
                   break;
@@ -659,38 +695,38 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "2");
-      if (safeChosen === "2") {
+      const secondSafeSelected = safe1Selected.find(sf2 => sf2 === "yes");
+      if (secondSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
-          safeSelected[0] = "2";
+          safe2Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
-            safeSelected[0] = "2";
+            safe2Selected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
-              safeSelected[0] = "2";
+              safe2Selected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
-                safeSelected[0] = "2";
+                safe2Selected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing type dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "2";
+                  safe2Selected[0] = "yes";
                   break;
                 } else {
                   break;
@@ -707,41 +743,46 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "3") {
+      const thirdSafeSelected = safe3Selected.find(sf3 => sf3 === "yes");
+      if (thirdSafeSelected === "3") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You found an armband you put it on have another turn";
           delete howManyKeys0[0];
-          safeSelected[0] = "3";
+          safe3Selected[0] = "yes";
+          safeArmband[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage =
               "You found an armband you put it on have another turn";
             delete howManyKeys1[0];
-            safeSelected[0] = "3";
+            safe3Selected[0] = "yes";
+            safeArmband[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage =
                 "You found an armband you put it on have another turn";
               delete howManyKeys2[0];
-              safeSelected[0] = "3";
+              safe3Selected[0] = "yes";
+              safeArmband[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage =
                   "You found an armband you put it on have another turn";
                 delete howManyKeys3[0];
-                safeSelected[0] = "3";
+                safe3Selected[0] = "yes";
+                safeArmband[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You found an armband you put it on type dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "3";
+                  safe3Selected[0] = "yes";
+                  safeArmband[0] = "yes";
                   break;
                 } else {
                   break;
@@ -758,38 +799,38 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "4") {
+      const fourthSafeSelected = safe4Selected.find(sf4 => sf4 === "yes");
+      if (fourthSafeSelected === "4") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
-          safeSelected[0] = "4";
+          safe4Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
-            safeSelected[0] = "4";
+            safeSelected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
-              safeSelected[0] = "4";
+              safeSelected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
-                safeSelected[0] = "4";
+                safeSelected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "4";
+                  safeSelected[0] = "yes";
                   break;
                 } else {
                   break;
@@ -806,38 +847,42 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "yes") {
+      if (safeSelected === "5") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You find a voice changer have another turn";
           delete howManyKeys0[0];
-          safeSelected[0] = "5";
+          safe5Selected[0] = "yes";
+          safeVoiceChanger[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "You find a voice changer have another turn";
             delete howManyKeys1[0];
-            safeSelected[0] = "5";
+            safe5Selected[0] = "yes";
+            safeVoiceChanger[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "You find a voice changer have another turn";
               delete howManyKeys2[0];
-              safeSelected[0] = "5";
+              safe5Selected[0] = "yes";
+              safeVoiceChanger[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You find a voice changer have another turn";
                 delete howManyKeys3[0];
-                safeSelected[0] = "5";
+                safe5Selected[0] = "yes";
+                safeVoiceChanger[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You find a voice changer use dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "5";
+                  safe5Selected[0] = "yes";
+                  safeVoiceChanger[0] = "yes";
                   break;
                 } else {
                   break;
@@ -854,38 +899,41 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "yes") {
+      if (safeSelected === "6") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You found an axe have another turn";
           delete howManyKeys0[0];
-          safeSelected[0] = "6";
+          safe6Selected[0] = "yes";
+          safeAxe[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "You found an axe have another turn";
             delete howManyKeys1[0];
-            safeSelected[0] = "6";
+            safe6Selected[0] = "yes";
+            safeAxe[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "You found an axe have another turn";
               delete howManyKeys2[0];
-              safeSelected[0] = "6";
+              safe6Selected[0] = "yes";
+              safeAxe[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You found an axe have another turn";
                 delete howManyKeys3[0];
-                safeSelected[0] = "6";
+                safe6Selected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You found an axe use dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "6";
+                  safe6Selected[0] = "yes";
+                  safeAxe[0] = "yes";
                   break;
                 } else {
                   break;
@@ -902,38 +950,37 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "yes") {
+      if (safeSelected === "7") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
-          safeSelected[0] = "7";
+          safe7Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
-            safeSelected[0] = "7";
+            safe7Selected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
-              safeSelected[0] = "7";
+              safe7Selected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
-                safeSelected[0] = "7";
+                safe7Selected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "7";
+                  safe7Selected[0] = "yes";
                   break;
                 } else {
                   break;
@@ -950,43 +997,47 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "yes") {
+      if (safeSelected === "8") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage =
             "You got the Stair key you can get into the stairs to floor2 have another go";
           delete howManyKeys0[0];
-          safeSelected[0] = "8";
+          safe8Selected[0] = "yes";
+          safeStairKey[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage =
               "You got the Stair key you can get into the stairs to floor2 have another go";
             delete howManyKeys1[0];
-            safeSelected[0] = "8";
+            safe8Selected[0] = "yes";
+            safeStairKey[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage =
                 "You got the Stair key you can get into the stairs to floor2 have another go";
               delete howManyKeys2[0];
-              safeSelected[0] = "8";
+              safe8Selected[0] = "yes";
+              safeStairKey[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage =
                   "You got the Stair key you can get into the stairs to floor2 have another go";
                 delete howManyKeys3[0];
-                safeSelected[0] = "8";
+                safe8Selected[0] = "yes";
+                safeStairKey[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage =
                     "You got the Stair key you can get into the stairs to floor2 use dr2 to get back";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "8";
+                  safe8Selected[0] = "yes";
+                  safeStairKey[0] = "yes";
                   break;
                 } else {
                   break;
@@ -1003,43 +1054,47 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "yes") {
+      if (safeSelected === "9") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage =
             "You found a usb with 1 zetabyte wonder what i can use it for have another go";
           delete howManyKeys0[0];
-          safeSelected[0] = "9";
+          safe9Selected[0] = "yes";
+          safeUsb[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage =
               "You found a usb with 1 zetabyte wonder what i can use it for have another go";
             delete howManyKeys1[0];
-            safeSelected[0] = "9";
+            safe9Selected[0] = "yes";
+            safeUsb[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage =
                 "You found a usb with 1 zetabyte wonder what i can use it for have another go";
               delete howManyKeys2[0];
-              safeSelected[0] = "9";
+              safe9Selected[0] = "yes";
+              safeUsb[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage =
                   "You found a usb with 1 zetabyte wonder what i can use it for have another go";
                 delete howManyKeys3[0];
-                safeSelected[0] = "9";
+                safe9Selected[0] = "yes";
+                safeUsb[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage =
                     "You found a usb with 1 zetabyte wonder what i can use it for go back with dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "9";
+                  safe9Selected[0] = "yes";
+                  safeUsb[0] = "yes";
                   break;
                 } else {
                   break;
@@ -1056,38 +1111,37 @@ function playGame() {
       const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
       const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
       const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const safeChosen = safeSelected.find(sf1 => sf1 === "1");
-      if (safeChosen === "yes") {
+      if (safeSelected === "10") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
           delete howManyKeys0[0];
-          safeSelected[0] = "10";
+          safe10Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
             delete howManyKeys1[0];
-            safeSelected[0] = "10";
+            safe10Selected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
               delete howManyKeys2[0];
-              safeSelected[0] = "10";
+              safe10Selected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
                 delete howManyKeys3[0];
-                safeSelected[0] = "10";
+                safe10Selected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
                   delete howManyKeys4[0];
-                  safeSelected[0] = "10";
+                  safe10Selected[0] = "yes";
                   break;
                 } else {
                   break;
@@ -1098,6 +1152,22 @@ function playGame() {
         }
       }
     }
+    case "skey": {
+      const StairKeyhas = safeStairKey.find(labsf => labsf === "yes");
+      if (StairKeyhas === "yes") {
+        gameMessage = "Nice job you are finally on level 4 floor 2 use floor2";
+        localStorage.setItem("airmakers2", "piper");
+        break;
+      } else {
+        break;
+      }
+    }
+    case "axe": {
+      gameMessage = "Yes the wood is removed you put the wood in the corner ";
+      break;
+    }
+    default:
+      commandNotFoundText = `${playersInput}, command not found`;
   }
   render();
 }
@@ -1107,26 +1177,9 @@ function render() {
 
   gameMessageDiv.innerHTML = "<br><em>" + gameMessage + "</em>";
   Inventory.innerHTML = "<br><em>" + insideInventory + "</em>";
+  commandNotFound.innerHTML = "<br><em>" + commandNotFoundText + "</em>";
 }
 
 function reload() {
   location.reload();
-}
-
-function safeInventoryCheck() {
-  if (safeChosen === "3") {
-    safeInventory[0] = "Armband";
-  }
-  if (safeChosen === "5") {
-    safeInventory[0] = "VoiceChanger";
-  }
-  if (safeChosen === "6") {
-    safeInventory[0] = "Axe";
-  }
-  if (safeChosen === "8") {
-    safeInventory[0] = "StairKey";
-  }
-  if (safeChosen === "9") {
-    safeInventory[0] = "Usb";
-  }
 }
