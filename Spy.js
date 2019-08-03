@@ -476,6 +476,7 @@ function playGame() {
       if (A320 == "airbus") {
         mapLocationIs = 2;
         gameMessage = "floor1";
+        delete insideInventory[0];
         break;
       } else {
         break;
@@ -486,6 +487,7 @@ function playGame() {
       if (J3 == "piper") {
         mapLocationIs = 3;
         gameMessage = "floor2";
+        delete insideInventory[0];
         break;
       } else {
         break;
@@ -496,6 +498,7 @@ function playGame() {
       if (DC2 == "douglas") {
         mapLocationIs = 4;
         gameMessage = "floor3";
+        delete insideInventory[0];
         break;
       } else {
         break;
@@ -506,6 +509,7 @@ function playGame() {
       if (Snipe == "sopwith") {
         mapLocationIs = 5;
         gameMessage = "floor4";
+        delete insideInventory[0];
         break;
       } else {
         break;
@@ -516,6 +520,7 @@ function playGame() {
       if (SpaceShip1 == "scaled") {
         mapLocationIs = 6;
         gameMessage = "floor5";
+        delete insideInventory[0];
         break;
       } else {
         break;
@@ -526,6 +531,7 @@ function playGame() {
       if (NightHalk == "lockheed") {
         mapLocationIs = 7;
         gameMessage = "escape";
+        delete insideInventory[0];
         break;
       } else {
         break;
