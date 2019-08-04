@@ -27,7 +27,7 @@ images[11] = "Military-weather-lab.jpg";
 images[12] = "Military-servers.jpg";
 images[13] = "Military-tracking-lab.png";
 images[14] = "Prision-hatch.jpg";
-images[15] = "starting screen.gif";
+images[15] = "Hall.jpg";
 images[16] = "Forward.jpg";
 images[17] = "Barn.jpg";
 images[18] = "Garage.jpg";
@@ -40,8 +40,9 @@ images[24] = "Vent.jpg";
 images[25] = "Elevator.jpg";
 images[26] = "Door1.jpg";
 images[27] = "Safes.jpg";
-images[27] = "Stairs.jpg";
-images[27] = "Axe.jpg";
+images[28] = "Stairs.jpg";
+images[29] = "Axe.jpg";
+images[30] = "AxeDoor.jpg";
 
 var mapLocation = 0;
 
@@ -473,17 +474,34 @@ function playGame() {
     }
     case "floor2": {
       const hasSafeAxe = safeAxe.find(axe => axe === "yes");
-      if (mapLoationIs === 2) {
+      var axe = localStorage.getItem("safeInventoryHasAxe");
+      var jc3 = localStorage.getItem("airmakers2");
+      var wdr1 = localStorage.getItem("axeUsed");
+      if (jc3 == "piper") {
         if (hasSafeAxe === "yes") {
+          mapImage = 29;
           gameMessage = "use axe to chop the wood in front of you";
           break;
         } else {
-          gameMessage =
-            "Dam it you need to go back to level 3 floor 1 you dont have the axe";
-          localStorage.removeItem("airmakers2");
-          break;
+          if (axe == "Axe") {
+            mapImage = 29;
+            gameMessage = "use axe to chop the wood in front of you";
+            break;
+          } else {
+            if (wdr1 == "use") {
+              mapImage = 29;
+              gameMessage =
+                "use axe to chop the wood in front of you sorry you have to do it again";
+              break;
+            } else {
+              gameMessage =
+                "Dam it you need to go back to level 3 floor 1 you dont have the axe";
+              localStorage.removeItem("airmakers2");
+              reloading = setTimeout(reload, 10000);
+              break;
+            }
+          }
         }
-        break;
       } else {
         break;
       }
@@ -607,6 +625,7 @@ function playGame() {
       if (gtl === "yes") {
         gameMessage =
           "You walk down a walkway and find a massive hall lucky for you its not in progress go to dr2 with dr2";
+        mapImage = 15;
         break;
       } else {
         break;
@@ -620,6 +639,7 @@ function playGame() {
         if (safedone === "yes") {
           if (StairKeyhas === "yes") {
             gameMessage = "Wow how good are you, you can use skey";
+            mapImage = "28";
             break;
           } else {
             gameMessage =
@@ -752,6 +772,7 @@ function playGame() {
           delete howManyKeys0[0];
           safe3Selected[0] = "yes";
           safeArmband[0] = "yes";
+          localStorage.setItem("safeInventoryHasArmband", "Armband");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
@@ -760,6 +781,7 @@ function playGame() {
             delete howManyKeys1[0];
             safe3Selected[0] = "yes";
             safeArmband[0] = "yes";
+            localStorage.setItem("safeInventoryHasArmband", "Armband");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
@@ -768,6 +790,7 @@ function playGame() {
               delete howManyKeys2[0];
               safe3Selected[0] = "yes";
               safeArmband[0] = "yes";
+              localStorage.setItem("safeInventoryHasArmband", "Armband");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
@@ -776,6 +799,7 @@ function playGame() {
                 delete howManyKeys3[0];
                 safe3Selected[0] = "yes";
                 safeArmband[0] = "yes";
+                localStorage.setItem("safeInventoryHasArmband", "Armband");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
@@ -783,6 +807,7 @@ function playGame() {
                   delete howManyKeys4[0];
                   safe3Selected[0] = "yes";
                   safeArmband[0] = "yes";
+                  localStorage.setItem("safeInventoryHasArmband", "Armband");
                   break;
                 } else {
                   break;
@@ -855,6 +880,7 @@ function playGame() {
           delete howManyKeys0[0];
           safe5Selected[0] = "yes";
           safeVoiceChanger[0] = "yes";
+          localStorage.setItem("safeInventoryHasVoice", "Voice");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
@@ -862,6 +888,7 @@ function playGame() {
             delete howManyKeys1[0];
             safe5Selected[0] = "yes";
             safeVoiceChanger[0] = "yes";
+            localStorage.setItem("safeInventoryHasVoice", "Voice");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
@@ -869,6 +896,7 @@ function playGame() {
               delete howManyKeys2[0];
               safe5Selected[0] = "yes";
               safeVoiceChanger[0] = "yes";
+              localStorage.setItem("safeInventoryHasVoice", "Voice");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
@@ -876,6 +904,7 @@ function playGame() {
                 delete howManyKeys3[0];
                 safe5Selected[0] = "yes";
                 safeVoiceChanger[0] = "yes";
+                localStorage.setItem("safeInventoryHasVoice", "Voice");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
@@ -883,6 +912,7 @@ function playGame() {
                   delete howManyKeys4[0];
                   safe5Selected[0] = "yes";
                   safeVoiceChanger[0] = "yes";
+                  localStorage.setItem("safeInventoryHasVoice", "Voice");
                   break;
                 } else {
                   break;
@@ -907,6 +937,7 @@ function playGame() {
           delete howManyKeys0[0];
           safe6Selected[0] = "yes";
           safeAxe[0] = "yes";
+          localStorage.setItem("safeInventoryHasAxe", "Axe");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
@@ -914,6 +945,7 @@ function playGame() {
             delete howManyKeys1[0];
             safe6Selected[0] = "yes";
             safeAxe[0] = "yes";
+            localStorage.setItem("safeInventoryHasAxe", "Axe");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
@@ -921,12 +953,14 @@ function playGame() {
               delete howManyKeys2[0];
               safe6Selected[0] = "yes";
               safeAxe[0] = "yes";
+              localStorage.setItem("safeInventoryHasAxe", "Axe");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You found an axe have another turn";
                 delete howManyKeys3[0];
                 safe6Selected[0] = "yes";
+                localStorage.setItem("safeInventoryHasAxe", "Axe");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
@@ -934,6 +968,7 @@ function playGame() {
                   delete howManyKeys4[0];
                   safe6Selected[0] = "yes";
                   safeAxe[0] = "yes";
+                  localStorage.setItem("safeInventoryHasAxe", "Axe");
                   break;
                 } else {
                   break;
@@ -1063,6 +1098,7 @@ function playGame() {
           delete howManyKeys0[0];
           safe9Selected[0] = "yes";
           safeUsb[0] = "yes";
+          localStorage.setItem("safeInventoryHasUsb", "Usb");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
@@ -1071,6 +1107,7 @@ function playGame() {
             delete howManyKeys1[0];
             safe9Selected[0] = "yes";
             safeUsb[0] = "yes";
+            localStorage.setItem("safeInventoryHasUsb", "Usb");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
@@ -1079,6 +1116,7 @@ function playGame() {
               delete howManyKeys2[0];
               safe9Selected[0] = "yes";
               safeUsb[0] = "yes";
+              localStorage.setItem("safeInventoryHasUsb", "Usb");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
@@ -1087,6 +1125,7 @@ function playGame() {
                 delete howManyKeys3[0];
                 safe9Selected[0] = "yes";
                 safeUsb[0] = "yes";
+                localStorage.setItem("safeInventoryHasUsb", "Usb");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
@@ -1095,6 +1134,7 @@ function playGame() {
                   delete howManyKeys4[0];
                   safe9Selected[0] = "yes";
                   safeUsb[0] = "yes";
+                  localStorage.setItem("safeInventoryHasUsb", "Usb");
                   break;
                 } else {
                   break;
@@ -1157,14 +1197,21 @@ function playGame() {
       if (StairKeyhas === "yes") {
         gameMessage = "Nice job you are finally on level 4 floor 2 use floor2";
         localStorage.setItem("airmakers2", "piper");
+        mapImage = 28;
         break;
       } else {
         break;
       }
     }
     case "axe": {
-      gameMessage = "Yes the wood is removed you put the wood in the corner ";
+      gameMessage =
+        "Yes the wood is removed you put the wood in the corner use wdr";
+      mapImage = 30;
+      localStorage.removeItem("safeInventoryHasAxe");
+      localStorage.setItem("axeUsed", "use");
       break;
+    }
+    case "wdr": {
     }
     default:
       commandNotFoundText = `${playersInput}, command not found`;
