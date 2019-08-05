@@ -1283,6 +1283,7 @@ function playGame() {
     }
     case "grid": {
       mapImage = 32;
+      gameMessage = "";
     }
     default:
       commandNotFoundText = `${playersInput}, command not found`;
