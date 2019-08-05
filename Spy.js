@@ -45,6 +45,9 @@ images[29] = "Axe.jpg";
 images[30] = "AxeDoor.jpg";
 images[31] = "Black.jpg";
 images[32] = "server grid.png";
+images[33] = "Untitled drawing.png";
+images[34] = "Before-Armory.jpg";
+images[35] = "Armory.jpg";
 
 var mapLocation = 0;
 
@@ -264,6 +267,7 @@ function playGame() {
         gameMessage =
           "Well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
         delete insideInventory[0];
+        localStorage.setItem("inLobby", "spyLobby");
         break;
       } else {
         break;
@@ -483,7 +487,7 @@ function playGame() {
       const hasSafeAxe = safeAxe.find(axe => axe === "yes");
       var axe = localStorage.getItem("safeInventoryHasAxe");
       var jc3 = localStorage.getItem("airmakers2");
-      var wdr1 = localStorage.getItem("axeUsed");
+      var doowr = localStorage.getItem("axeUsed");
       if (jc3 == "piper") {
         if (hasSafeAxe === "yes") {
           mapImage = 29;
@@ -495,10 +499,10 @@ function playGame() {
             gameMessage = "use axe to chop the wood in front of you";
             break;
           } else {
-            if (wdr1 == "use") {
+            if (doowr == "use") {
               mapImage = 29;
               gameMessage =
-                "use axe to chop the wood in front of you sorry you have to do it again";
+                "use axe to chop the wood in front of you sorry you have to do it again even thought you already did it last time you were on this";
               break;
             } else {
               gameMessage =
@@ -514,7 +518,9 @@ function playGame() {
       }
     }
     case "floor3": {
-      localStorage.setItem("airmakers", "douglas");
+      if (condition) {
+      } else {
+      }
     }
     case "floor4": {
       localStorage.setItem("airmakers", "sopwith");
@@ -552,6 +558,7 @@ function playGame() {
         mapLocationIs = 3;
         gameMessage = "floor2";
         delete insideInventory[0];
+        mapLocation = 3;
         break;
       } else {
         break;
@@ -1276,6 +1283,9 @@ function playGame() {
     case "drt": {
       const gegabytes10 = gegabytes.find(geg => geg === "yes");
       if (gegabytes10 === "yes") {
+        mapImage = 34;
+        gameMessage =
+          "What is this an armory well about time you can go throught the first door with armor of the next door with battle did i tell you that there is a battle arena throught the next door it leads down to the next floor";
         break;
       } else {
         break;
@@ -1283,7 +1293,135 @@ function playGame() {
     }
     case "grid": {
       mapImage = 32;
+      gameMessage =
+        "this has a ten by ten grid patern try to cut it one after the after you cant sorry as you cut a fake wire the gaurds come";
+      reloading = setTimeout(10000, reload);
+      break;
     }
+    case "armor": {
+      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      if (gegabytes10 === "yes") {
+        mapImage = 35;
+        gameMessage =
+          "well if you want to gear up use gear it will make you a lot more noticable but less likely to be attacked and also less likely to be hit leave with drt or gear with gear";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "gear": {
+      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      if (gegabytes10 === "yes") {
+        mapImage = 35;
+        gameMessage =
+          "well this is the biggest armory in existance this is one small area of it we must have a hand gun we also need some super thin bullet proof armor we also need my own invention when i worked there yes i did work there until i was hired it stops tranquilizer from doing anything but reverse it's efects by keeping it in you'r blood stream with a spin that is so fast blood is pumped much quicker use drt";
+        localStorage.setItem("geared", "has gear");
+        break;
+      } else {
+        break;
+      }
+    }
+    case "battle": {
+      const attacking = localStorage.getItem("geared");
+      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      if (gegabytes10 === "yes") {
+        if (attacking === "has gear") {
+          gameMessage =
+            "well you'r smart it actully had battle on the door because there is an attack keep shooting use shoot";
+          localStorage.setItem("shooting", "yes");
+          break;
+        } else {
+          gameMessage =
+            "well you'r going into a battle without armor your taken out you are stunned the agents come to get you to help you relise your an enemy lock you up sorry";
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+    case "shoot": {
+      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      const shotdead = localStorage.getItem("shooting");
+      if (gegabytes10 === "yes") {
+        if (shotdead === "yes") {
+          mapImage = 33;
+          gameMessage = "use the letters that are there";
+          localStorage.setItem("hasShot", "shootToKill");
+          break;
+        } else {
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+    case "z": {
+      const shotToKillz = localStorage.getItem("hasShot");
+      if (shotToKillz === "shootToKill") {
+        gameMessage =
+          "well 26 must be your lucky number coming back for revenge you got hit";
+        reloading = setInterval(10000, reload);
+        break;
+      } else {
+        break;
+      }
+    }
+    case "y": {
+      const shotToKilly = localStorage.getItem("hasShot");
+      if (shotToKilly === "shootToKill") {
+        gameMessage =
+          "well 25 must be your unlucky number coming back to reward you, you can get into the stairs with yest";
+        localStorage.setItem("gst", "yst");
+        break;
+      } else {
+        break;
+      }
+    }
+    case "x": {
+      const shotToKillx = localStorage.getItem("hasShot");
+      if (shotToKillx === "shootToKill") {
+        gameMessage =
+          "well 24 must be your lucky number coming back to haunt you i mean taking cover is a good idea but lowground isnt the best choice your hit";
+        reloading = setInterval(10000, reload);
+        break;
+      } else {
+        break;
+      }
+    }
+    case "w": {
+      const shotToKillw = localStorage.getItem("hasShot");
+      if (shotToKillw === "shootToKill") {
+        gameMessage =
+          "well 23 must be your lucky number coming back to haunt you, you are in the open yoou get hit";
+        reloading = setInterval(10000, reload);
+        break;
+      } else {
+        break;
+      }
+    }
+    case "v": {
+      const shotToKillv = localStorage.getItem("hasShot");
+      if (shotToKillv === "shootToKill") {
+        gameMessage =
+          "well 23 must be your lucky number coming back to haunt you, i mean the position near the stairs is good but over the valley you are hit";
+        reloading = setInterval(10000, reload);
+        break;
+      } else {
+        break;
+      }
+    }
+    case "yest": {
+      const yUsed = localStorage.getItem("gst");
+      if (yUsed === "yst") {
+        gameMessage - "well done use floor3";
+        mapImage = 4;
+        localStorage.setItem("airmakers", "douglas");
+        break;
+      } else {
+        break;
+      }
+    }
+
     default:
       commandNotFoundText = `${playersInput}, command not found`;
   }
