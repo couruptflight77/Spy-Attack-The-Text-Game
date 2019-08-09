@@ -48,12 +48,16 @@ images[32] = "server grid.png";
 images[33] = "Untitled drawing.png";
 images[34] = "Before-Armory.jpg";
 images[35] = "Armory.jpg";
+images[36] = "credits.gif";
 
 var mapLocation = 0;
 
 var mapLocationIs;
 
 var reloading;
+var begining;
+
+localStorage.setItem("startOfGame", "beganGame");
 
 var playersInput = "";
 
@@ -99,7 +103,7 @@ var hall = [];
 
 var gtlab = [];
 
-var mapImage = 0;
+var mapImage = 36;
 
 var gridOn = [];
 
@@ -123,8 +127,8 @@ var insideInventory = [];
 
 var action = "";
 
-var gameMessage =
-  "Hello Matt you can go right to the barn with r or left to the garage with l";
+var gameMessage = "";
+
 insideInventory[0] = "grapple";
 
 var Sorry = document.querySelector("#Sorry");
@@ -149,6 +153,12 @@ function playGame() {
   commandNotFoundText = "";
 
   switch (playersInput) {
+    case "begin": {
+      localStorage.removeItem("startOfGame");
+      gameMessage =
+        "Hello Matt you can go right to the barn with r or left to the garage with l";
+      break;
+    }
     case "r": {
       beenRight[0] = "yes";
       gameMessage = "You are in a barn get the ladder with pl or leave with b";
@@ -1413,13 +1423,15 @@ function playGame() {
     case "yest": {
       const yUsed = localStorage.getItem("gst");
       if (yUsed === "yst") {
-        gameMessage - "well done use floor3";
+        gameMessage = "well done use floor3";
         mapImage = 4;
         localStorage.setItem("airmakers", "douglas");
         break;
       } else {
         break;
       }
+    }
+    case "": {
     }
 
     default:
@@ -1428,6 +1440,10 @@ function playGame() {
   render();
 }
 function render() {
+  const startOf = localStorage.getItem("startOfGame");
+  if (startOf === "beganGame") {
+    begining.setInterval(15000, beginGame);
+  }
   output.innerHTML = map[mapLocation];
   image.src = "images/" + images[mapImage];
 
@@ -1438,4 +1454,8 @@ function render() {
 
 function reload() {
   location.reload();
+}
+function beginGame() {
+  console.warn("activate");
+  gameMessage = "use begin to start game";
 }
