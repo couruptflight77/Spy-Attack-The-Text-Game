@@ -1413,13 +1413,15 @@ function playGame() {
     case "yest": {
       const yUsed = localStorage.getItem("gst");
       if (yUsed === "yst") {
-        gameMessage - "well done use floor3";
+        gameMessage = "well done use floor3";
         mapImage = 4;
         localStorage.setItem("airmakers", "douglas");
         break;
       } else {
         break;
       }
+    }
+    case "": {
     }
 
     default:
