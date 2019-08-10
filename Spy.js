@@ -667,10 +667,10 @@ function playGame() {
     }
     case "dr2": {
       const gtl = localStorage.getItem("labHere");
-      const safedone = safesdone.find(cfd => cfd === "yes");
+      const safedone = localStorage.getItem("safeUsed");
       const StairKeyhas = safeStairKey.find(labsf => labsf === "yes");
       if (gtl === "yes") {
-        if (safedone === "yes") {
+        if (safedone === "keysUsed") {
           if (StairKeyhas === "yes") {
             gameMessage = "Wow how good are you, you can use skey";
             mapImage = "28";
@@ -685,54 +685,55 @@ function playGame() {
           mapImage = 27;
           gameMessage =
             "There are 10 safes and 5 keys man is this going to be hard to decide which i would chose use safe and then the number of the safe you chose like safe1. There are five items you must have or your progress will be stoped";
-          howManyKeys0[0] = "1";
-          howManyKeys1[0] = "1";
-          howManyKeys2[0] = "1";
-          howManyKeys3[0] = "1";
-          howManyKeys4[0] = "1";
-          safesdone[0] = "yes";
+          localStorage.setItem("keyOne", "1");
+          localStorage.setItem("keyTwo", "1");
+          localStorage.setItem("keyThree", "1");
+          localStorage.setItem("keyFour", "1");
+          localStorage.setItem("keyFive", "1");
+          localStorage.setItem("safeUsed", "1");
           break;
         }
       }
     }
     case "safe1": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const firstSafeSelected = safe1Selected.find(sf1 => sf1 === "yes");
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const firstSafeSelected = localStorage.getItem("safeOneUsed");
       if (firstSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "The safe is empty try again";
-          delete howManyKeys0[0];
-          safe1Selected[0] = "yes";
+          localStorage.removeItem("keyOne");
+          localStorage.setItem("safeOneUsed", "yes");
+          localStorage.setItem("safeThreeUsed", "yes");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "The safe is empty try again";
-            delete howManyKeys1[0];
-            safe1Selected[0] = "yes";
+            localStorage.removeItem("keyTwo");
+            localStorage.setItem("safeOneUsed", "yes");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "The safe is empty try again";
-              delete howManyKeys2[0];
-              safe1Selected[0] = "yes";
+              localStorage.removeItem("keyThree");
+              localStorage.setItem("safeOneUsed", "yes");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "The safe is empty try again";
-                delete howManyKeys3[0];
-                safe1Selected[0] = "yes";
+                localStorage.removeItem("keyFour");
+                localStorage.setItem("safeOneUsed", "yes");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "The safe is empty type dr2";
-                  delete howManyKeys4[0];
-                  safe1Selected[0] = "yes";
+                  localStorage.removeItem("keyFive");
+                  localStorage.setItem("safeOneUsed", "yes");
                   break;
                 } else {
                   break;
@@ -744,43 +745,43 @@ function playGame() {
       }
     }
     case "safe2": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const secondSafeSelected = safe1Selected.find(sf2 => sf2 === "yes");
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const secondSafeSelected = localStorage.getItem("safeTwoUsed");
       if (secondSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
-          delete howManyKeys0[0];
-          safe2Selected[0] = "yes";
+          localStorage.removeItem("keyOne");
+          localStorage.setItem("safeTwoUsed", "yes");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
-            delete howManyKeys1[0];
-            safe2Selected[0] = "yes";
+            localStorage.removeItem("keyTwo");
+            localStorage.setItem("safeTwoUsed", "yes");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
-              delete howManyKeys2[0];
-              safe2Selected[0] = "yes";
+              localStorage.removeItem("keyThree");
+              localStorage.setItem("safeTwoUsed", "yes");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
-                delete howManyKeys3[0];
-                safe2Selected[0] = "yes";
+                localStorage.removeItem("keyFour");
+                localStorage.setItem("safeTwoUsed", "yes");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing type dr2";
-                  delete howManyKeys4[0];
-                  safe2Selected[0] = "yes";
+                  localStorage.removeItem("keyFive");
+                  localStorage.setItem("safeTwoUsed", "yes");
                   break;
                 } else {
                   break;
@@ -792,55 +793,50 @@ function playGame() {
       }
     }
     case "safe3": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const thirdSafeSelected = safe3Selected.find(sf3 => sf3 === "yes");
-      if (thirdSafeSelected === "3") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const thirdSafeSelected = localStorage.getItem("safeThreeUsed");
+      if (thirdSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You found an armband you put it on have another turn";
-          delete howManyKeys0[0];
-          safe3Selected[0] = "yes";
-          safeArmband[0] = "yes";
+          localStorage.removeItem("keyOne");
+          localStorage.setItem("safeThreeUsed", "yes");
           localStorage.setItem("safeInventoryHasArmband", "Armband");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage =
               "You found an armband you put it on have another turn";
-            delete howManyKeys1[0];
-            safe3Selected[0] = "yes";
-            safeArmband[0] = "yes";
+            localStorage.removeItem("keyTwo");
+            localStorage.setItem("safeThreeUsed", "yes");
             localStorage.setItem("safeInventoryHasArmband", "Armband");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage =
                 "You found an armband you put it on have another turn";
-              delete howManyKeys2[0];
-              safe3Selected[0] = "yes";
-              safeArmband[0] = "yes";
+              localStorage.removeItem("keyThree");
+              localStorage.setItem("safeThreeUsed", "yes");
               localStorage.setItem("safeInventoryHasArmband", "Armband");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage =
                   "You found an armband you put it on have another turn";
-                delete howManyKeys3[0];
-                safe3Selected[0] = "yes";
-                safeArmband[0] = "yes";
+                localStorage.removeItem("keyFour");
+                localStorage.setItem("safeThreeUsed", "yes");
                 localStorage.setItem("safeInventoryHasArmband", "Armband");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You found an armband you put it on type dr2";
-                  delete howManyKeys4[0];
-                  safe3Selected[0] = "yes";
-                  safeArmband[0] = "yes";
+                  localStorage.removeItem("keyFive");
+                  localStorage.setItem("safeThreeUsed", "yes");
                   localStorage.setItem("safeInventoryHasArmband", "Armband");
                   break;
                 } else {
@@ -853,42 +849,42 @@ function playGame() {
       }
     }
     case "safe4": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      const fourthSafeSelected = safe4Selected.find(sf4 => sf4 === "yes");
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const fourthSafeSelected = localStorage.getItem("safeFourUsed");
       if (fourthSafeSelected === "4") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
-          delete howManyKeys0[0];
+          localStorage.removeItem("keyOne");
           safe4Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
-            delete howManyKeys1[0];
+            localStorage.removeItem("keyTwo");
             safeSelected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
-              delete howManyKeys2[0];
+              localStorage.removeItem("keyThree");
               safeSelected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
-                delete howManyKeys3[0];
+                localStorage.removeItem("keyFour");
                 safeSelected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
-                  delete howManyKeys4[0];
+                  localStorage.removeItem("keyFive");
                   safeSelected[0] = "yes";
                   break;
                 } else {
@@ -901,17 +897,18 @@ function playGame() {
       }
     }
     case "safe5": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      if (safeSelected === "5") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const fifthSafeSelected = localStorage.getItem("safeFiveUsed");
+      if (fifthSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You find a voice changer have another turn";
-          delete howManyKeys0[0];
+          localStorage.removeItem("keyOne");
           safe5Selected[0] = "yes";
           safeVoiceChanger[0] = "yes";
           localStorage.setItem("safeInventoryHasVoice", "Voice");
@@ -919,7 +916,7 @@ function playGame() {
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "You find a voice changer have another turn";
-            delete howManyKeys1[0];
+            localStorage.removeItem("keyTwo");
             safe5Selected[0] = "yes";
             safeVoiceChanger[0] = "yes";
             localStorage.setItem("safeInventoryHasVoice", "Voice");
@@ -927,7 +924,7 @@ function playGame() {
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "You find a voice changer have another turn";
-              delete howManyKeys2[0];
+              localStorage.removeItem("keyThree");
               safe5Selected[0] = "yes";
               safeVoiceChanger[0] = "yes";
               localStorage.setItem("safeInventoryHasVoice", "Voice");
@@ -935,7 +932,7 @@ function playGame() {
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You find a voice changer have another turn";
-                delete howManyKeys3[0];
+                localStorage.removeItem("keyFour");
                 safe5Selected[0] = "yes";
                 safeVoiceChanger[0] = "yes";
                 localStorage.setItem("safeInventoryHasVoice", "Voice");
@@ -943,7 +940,7 @@ function playGame() {
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You find a voice changer use dr2";
-                  delete howManyKeys4[0];
+                  localStorage.removeItem("keyFive");
                   safe5Selected[0] = "yes";
                   safeVoiceChanger[0] = "yes";
                   localStorage.setItem("safeInventoryHasVoice", "Voice");
@@ -958,17 +955,18 @@ function playGame() {
       }
     }
     case "safe6": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      if (safeSelected === "6") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const sixthSafeSelected = localStorage.getItem("safeSixUsed");
+      if (sixthSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You found an axe have another turn";
-          delete howManyKeys0[0];
+          localStorage.removeItem("keyOne");
           safe6Selected[0] = "yes";
           safeAxe[0] = "yes";
           localStorage.setItem("safeInventoryHasAxe", "Axe");
@@ -976,7 +974,7 @@ function playGame() {
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "You found an axe have another turn";
-            delete howManyKeys1[0];
+            localStorage.removeItem("keyTwo");
             safe6Selected[0] = "yes";
             safeAxe[0] = "yes";
             localStorage.setItem("safeInventoryHasAxe", "Axe");
@@ -984,7 +982,7 @@ function playGame() {
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "You found an axe have another turn";
-              delete howManyKeys2[0];
+              localStorage.removeItem("keyThree");
               safe6Selected[0] = "yes";
               safeAxe[0] = "yes";
               localStorage.setItem("safeInventoryHasAxe", "Axe");
@@ -992,14 +990,14 @@ function playGame() {
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You found an axe have another turn";
-                delete howManyKeys3[0];
+                localStorage.removeItem("keyFour");
                 safe6Selected[0] = "yes";
                 localStorage.setItem("safeInventoryHasAxe", "Axe");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You found an axe use dr2";
-                  delete howManyKeys4[0];
+                  localStorage.removeItem("keyFive");
                   safe6Selected[0] = "yes";
                   safeAxe[0] = "yes";
                   localStorage.setItem("safeInventoryHasAxe", "Axe");
@@ -1014,41 +1012,42 @@ function playGame() {
       }
     }
     case "safe7": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      if (safeSelected === "7") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const seventhSafeSelected = localStorage.getItem("safeSevenUsed");
+      if (seventhSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
-          delete howManyKeys0[0];
+          localStorage.removeItem("keyOne");
           safe7Selected[0] = "yes";
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
-            delete howManyKeys1[0];
+            localStorage.removeItem("keyTwo");
             safe7Selected[0] = "yes";
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
-              delete howManyKeys2[0];
+              localStorage.removeItem("keyThree");
               safe7Selected[0] = "yes";
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
-                delete howManyKeys3[0];
+                localStorage.removeItem("keyFour");
                 safe7Selected[0] = "yes";
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
-                  delete howManyKeys4[0];
+                  localStorage.removeItem("keyFive");
                   safe7Selected[0] = "yes";
                   break;
                 } else {
@@ -1061,52 +1060,53 @@ function playGame() {
       }
     }
     case "safe8": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      if (safeSelected === "8") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const eighthSafeSelected = localStorage.getItem("safeEightUsed");
+      if (eighthSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage =
             "You got the Stair key you can get into the stairs to floor2 have another go";
-          delete howManyKeys0[0];
-          safe8Selected[0] = "yes";
-          safeStairKey[0] = "yes";
+          localStorage.removeItem("keyOne");
+          localStorage.setItem("safeEightUsed", "yes");
+          localStorage.setItem("stKey", "safeHasKey");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage =
               "You got the Stair key you can get into the stairs to floor2 have another go";
-            delete howManyKeys1[0];
-            safe8Selected[0] = "yes";
-            safeStairKey[0] = "yes";
+            localStorage.removeItem("keyTwo");
+            localStorage.setItem("safeEightUsed", "yes");
+            localStorage.setItem("stKey", "safeHasKey");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage =
                 "You got the Stair key you can get into the stairs to floor2 have another go";
-              delete howManyKeys2[0];
-              safe8Selected[0] = "yes";
-              safeStairKey[0] = "yes";
+              localStorage.removeItem("keyThree");
+              localStorage.setItem("safeEightUsed", "yes");
+              localStorage.setItem("stKey", "safeHasKey");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage =
                   "You got the Stair key you can get into the stairs to floor2 have another go";
-                delete howManyKeys3[0];
-                safe8Selected[0] = "yes";
-                safeStairKey[0] = "yes";
+                localStorage.removeItem("keyFour");
+                localStorage.setItem("safeEightUsed", "yes");
+                localStorage.setItem("stKey", "safeHasKey");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage =
                     "You got the Stair key you can get into the stairs to floor2 use dr2 to get back";
-                  delete howManyKeys4[0];
-                  safe8Selected[0] = "yes";
-                  safeStairKey[0] = "yes";
+                  localStorage.removeItem("keyFive");
+                  localStorage.setItem("safeEightUsed", "yes");
+                  localStorage.setItem("stKey", "safeHasKey");
                   break;
                 } else {
                   break;
@@ -1118,56 +1118,52 @@ function playGame() {
       }
     }
     case "safe9": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      if (safeSelected === "9") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const ninethSafeSelected = localStorage.getItem("safeNineUsed");
+      if (ninethSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage =
             "You found a usb with 1 zetabyte wonder what i can use it for have another go";
-          delete howManyKeys0[0];
-          safe9Selected[0] = "yes";
-          safeUsb[0] = "yes";
+          localStorage.removeItem("keyOne");
+          localStorage.setItem("safeNineUsed", "yes");
           localStorage.setItem("safeInventoryHasUsb", "Usb");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage =
               "You found a usb with 1 zetabyte wonder what i can use it for have another go";
-            delete howManyKeys1[0];
-            safe9Selected[0] = "yes";
-            safeUsb[0] = "yes";
+            localStorage.removeItem("keyTwo");
+            localStorage.setItem("safeNineUsed", "yes");
             localStorage.setItem("safeInventoryHasUsb", "Usb");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage =
                 "You found a usb with 1 zetabyte wonder what i can use it for have another go";
-              delete howManyKeys2[0];
-              safe9Selected[0] = "yes";
-              safeUsb[0] = "yes";
+              localStorage.removeItem("keyThree");
+              localStorage.setItem("safeNineUsed", "yes");
               localStorage.setItem("safeInventoryHasUsb", "Usb");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage =
                   "You found a usb with 1 zetabyte wonder what i can use it for have another go";
-                delete howManyKeys3[0];
-                safe9Selected[0] = "yes";
-                safeUsb[0] = "yes";
+                localStorage.removeItem("keyFour");
+                localStorage.setItem("safeNineUsed", "yes");
                 localStorage.setItem("safeInventoryHasUsb", "Usb");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage =
                     "You found a usb with 1 zetabyte wonder what i can use it for go back with dr2";
-                  delete howManyKeys4[0];
-                  safe9Selected[0] = "yes";
-                  safeUsb[0] = "yes";
+                  localStorage.removeItem("keyFive");
+                  localStorage.setItem("safeNineUsed", "yes");
                   localStorage.setItem("safeInventoryHasUsb", "Usb");
                   break;
                 } else {
@@ -1180,42 +1176,43 @@ function playGame() {
       }
     }
     case "safe10": {
-      const howManyKeysIn0 = howManyKeys0.find(ky1 => ky1 === "1");
-      const howManyKeysIn1 = howManyKeys1.find(ky2 => ky2 === "1");
-      const howManyKeysIn2 = howManyKeys2.find(ky3 => ky3 === "1");
-      const howManyKeysIn3 = howManyKeys3.find(ky4 => ky4 === "1");
-      const howManyKeysIn4 = howManyKeys4.find(ky5 => ky5 === "1");
-      if (safeSelected === "10") {
+      const howManyKeysIn0 = localStorage.getItem("keyOne");
+      const howManyKeysIn1 = localStorage.getItem("keyTwo");
+      const howManyKeysIn2 = localStorage.getItem("keyThree");
+      const howManyKeysIn3 = localStorage.getItem("keyFour");
+      const howManyKeysIn4 = localStorage.getItem("keyFive");
+      const tenthSafeSelected = localStorage.getItem("safeTenUsed");
+      if (tenthSafeSelected === "yes") {
         break;
       } else {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
-          delete howManyKeys0[0];
-          safe10Selected[0] = "yes";
+          localStorage.removeItem("keyOne");
+          localStorage.setItem("safeTenUsed", "yes");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
-            delete howManyKeys1[0];
-            safe10Selected[0] = "yes";
+            localStorage.removeItem("keyTwo");
+            localStorage.setItem("safeTenUsed", "yes");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
-              delete howManyKeys2[0];
-              safe10Selected[0] = "yes";
+              localStorage.removeItem("keyThree");
+              localStorage.setItem("safeTenUsed", "yes");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
-                delete howManyKeys3[0];
-                safe10Selected[0] = "yes";
+                localStorage.removeItem("keyFour");
+                localStorage.setItem("safeTenUsed", "yes");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
-                  delete howManyKeys4[0];
-                  safe10Selected[0] = "yes";
+                  localStorage.removeItem("keyFive");
+                  localStorage.setItem("safeTenUsed", "yes");
                   break;
                 } else {
                   break;
@@ -1481,6 +1478,17 @@ function playGame() {
         localStorage.setItem("gst", "yst");
         localStorage.setItem("airmakers3", "douglas");
         localStorage.setItem("cafeInSight", "CoffeeAndMuffins");
+        localStorage.setItem("safeUsed", "keysUsed");
+        localStorage.setItem("safeOneUsed", "yes");
+        localStorage.setItem("safeTwoUsed", "yes");
+        localStorage.setItem("safeThreeUsed", "yes");
+        localStorage.setItem("safeFourUsed", "yes");
+        localStorage.setItem("safeFiveUsed", "yes");
+        localStorage.setItem("safeSixUsed", "yes");
+        localStorage.setItem("safeSevenUsed", "yes");
+        localStorage.setItem("safeEightUsed", "yes");
+        localStorage.setItem("safeNineUsed", "yes");
+        localStorage.setItem("safeTenUsed", "yes");
         break;
       } else {
         break;
