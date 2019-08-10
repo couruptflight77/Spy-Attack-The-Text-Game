@@ -1445,7 +1445,7 @@ function playGame() {
     case "cafe": {
       const findCafe = localStorage.getItem("cafeInSight");
       if (findCafe === "CoffeeAndMuffins") {
-        gameMessage = "";
+        gameMessage = "Well this is one high tech cafe";
         break;
       } else {
         break;
