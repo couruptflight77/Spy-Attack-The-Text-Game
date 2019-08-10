@@ -861,31 +861,31 @@ function playGame() {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
           localStorage.removeItem("keyOne");
-          safe4Selected[0] = "yes";
+          slocalStorage.setItem("safeFourUsed", "yes");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
             localStorage.removeItem("keyTwo");
-            safeSelected[0] = "yes";
+            localStorage.setItem("safeFourUsed", "yes");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
               localStorage.removeItem("keyThree");
-              safeSelected[0] = "yes";
+              localStorage.setItem("safeFourUsed", "yes");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
                 localStorage.removeItem("keyFour");
-                safeSelected[0] = "yes";
+                localStorage.setItem("safeFourUsed", "yes");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
                   localStorage.removeItem("keyFive");
-                  safeSelected[0] = "yes";
+                  localStorage.setItem("safeFourUsed", "yes");
                   break;
                 } else {
                   break;
@@ -909,40 +909,35 @@ function playGame() {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You find a voice changer have another turn";
           localStorage.removeItem("keyOne");
-          safe5Selected[0] = "yes";
-          safeVoiceChanger[0] = "yes";
+          localStorage.setItem("safeFiveUsed", "yes");
           localStorage.setItem("safeInventoryHasVoice", "Voice");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "You find a voice changer have another turn";
             localStorage.removeItem("keyTwo");
-            safe5Selected[0] = "yes";
-            safeVoiceChanger[0] = "yes";
+            localStorage.setItem("safeFiveUsed", "yes");
             localStorage.setItem("safeInventoryHasVoice", "Voice");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "You find a voice changer have another turn";
               localStorage.removeItem("keyThree");
-              safe5Selected[0] = "yes";
-              safeVoiceChanger[0] = "yes";
+              localStorage.setItem("safeFiveUsed", "yes");
               localStorage.setItem("safeInventoryHasVoice", "Voice");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You find a voice changer have another turn";
                 localStorage.removeItem("keyFour");
-                safe5Selected[0] = "yes";
-                safeVoiceChanger[0] = "yes";
+                localStorage.setItem("safeFiveUsed", "yes");
                 localStorage.setItem("safeInventoryHasVoice", "Voice");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You find a voice changer use dr2";
                   localStorage.removeItem("keyFive");
-                  safe5Selected[0] = "yes";
-                  safeVoiceChanger[0] = "yes";
+                  localStorage.setItem("safeFiveUsed", "yes");
                   localStorage.setItem("safeInventoryHasVoice", "Voice");
                   break;
                 } else {
@@ -967,39 +962,35 @@ function playGame() {
         if (howManyKeysIn0 === "1") {
           gameMessage = "You found an axe have another turn";
           localStorage.removeItem("keyOne");
-          safe6Selected[0] = "yes";
-          safeAxe[0] = "yes";
+          localStorage.setItem("safeSixUsed", "yes");
           localStorage.setItem("safeInventoryHasAxe", "Axe");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "You found an axe have another turn";
             localStorage.removeItem("keyTwo");
-            safe6Selected[0] = "yes";
-            safeAxe[0] = "yes";
+            localStorage.setItem("safeSixUsed", "yes");
             localStorage.setItem("safeInventoryHasAxe", "Axe");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "You found an axe have another turn";
               localStorage.removeItem("keyThree");
-              safe6Selected[0] = "yes";
-              safeAxe[0] = "yes";
+              localStorage.setItem("safeSixUsed", "yes");
               localStorage.setItem("safeInventoryHasAxe", "Axe");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "You found an axe have another turn";
                 localStorage.removeItem("keyFour");
-                safe6Selected[0] = "yes";
+                localStorage.setItem("safeSixUsed", "yes");
                 localStorage.setItem("safeInventoryHasAxe", "Axe");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "You found an axe use dr2";
                   localStorage.removeItem("keyFive");
-                  safe6Selected[0] = "yes";
-                  safeAxe[0] = "yes";
+                  localStorage.setItem("safeSixUsed", "yes");
                   localStorage.setItem("safeInventoryHasAxe", "Axe");
                   break;
                 } else {
@@ -1024,31 +1015,31 @@ function playGame() {
         if (howManyKeysIn0 === "1") {
           gameMessage = "There is nothing try again";
           localStorage.removeItem("keyOne");
-          safe7Selected[0] = "yes";
+          localStorage.setItem("safeSevenUsed", "yes");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
             gameMessage = "There is nothing try again";
             localStorage.removeItem("keyTwo");
-            safe7Selected[0] = "yes";
+            localStorage.setItem("safeSevenUsed", "yes");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
               gameMessage = "There is nothing try again";
               localStorage.removeItem("keyThree");
-              safe7Selected[0] = "yes";
+              localStorage.setItem("safeSevenUsed", "yes");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
                 gameMessage = "There is nothing try again";
                 localStorage.removeItem("keyFour");
-                safe7Selected[0] = "yes";
+                localStorage.setItem("safeSevenUsed", "yes");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
                   gameMessage = "There is nothing use dr2";
                   localStorage.removeItem("keyFive");
-                  safe7Selected[0] = "yes";
+                  localStorage.setItem("safeSevenUsed", "yes");
                   break;
                 } else {
                   break;
