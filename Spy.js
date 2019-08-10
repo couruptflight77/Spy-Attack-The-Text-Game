@@ -9,6 +9,7 @@ map[4] = "Level 5 Floor 3";
 map[5] = "Level 6 Floor 4";
 map[6] = "Level 7 Genetics Lab";
 map[7] = "Level 8 Escape";
+map[8] = "";
 
 var images = [];
 
@@ -50,7 +51,7 @@ images[34] = "Before-Armory.jpg";
 images[35] = "Armory.jpg";
 images[36] = "credits.gif";
 
-var mapLocation = 0;
+var mapLocation = 8;
 
 var mapLocationIs;
 
@@ -64,6 +65,8 @@ var playersInput = "";
 var commandNotFoundText = "";
 
 var commands = [];
+
+var startedGame = [];
 
 var safe1Selected = [];
 var safe2Selected = [];
@@ -151,6 +154,7 @@ function playGame() {
 
   switch (playersInput) {
     case "begin": {
+      mapLocation = 0;
       localStorage.removeItem("startOfGame");
       mapImage = 0;
       insideInventory[0] = "grapple";
@@ -197,15 +201,15 @@ function playGame() {
       if (canGetLadder) {
         mapImage = 17;
         insideInventory[1] = " ladder";
-        gameMessage = "You got a ladder press b to go back";
+        gameMessage = "You got a ladder use b to go back";
         break;
       } else {
         break;
       }
     }
     case "ladder": {
-      const hasLadder = insideInventory.find(inv => inv === "ladder");
-      if (hasLadder === "ladder") {
+      const hasLadder = insideInventory.find(inv => inv === " ladder");
+      if (hasLadder === " ladder") {
         ladderPlaced[0] = "yes";
         delete insideInventory[1];
         gameMessage = "Use climb to view options";
@@ -1441,10 +1445,12 @@ function playGame() {
 function render() {
   const startOf = localStorage.getItem("startOfGame");
   const gameCreditsOver = startedGame.find(yee => yee, "yes");
-  if (startOf === "beganGame") {
-    if (gameCreditsOver === "yes") {
+  if (gameCreditsOver === "yes") {
+  } else {
+    if (startOf === "beganGame") {
       begining = setInterval(beginGame, 15000);
       startedGame[0] = "yes";
+    } else {
     }
   }
   output.innerHTML = map[mapLocation];
@@ -1458,7 +1464,13 @@ function render() {
 function reload() {
   location.reload();
 }
+var alreadyBegan = [];
 function beginGame() {
-  gameMessage = "use begin to start game";
-  render();
+  const beginGameTriggered = alreadyBegan.find(beg => beg, "yes");
+  if (beginGameTriggered === "yes") {
+  } else {
+    alreadyBegan[0] = "yes";
+    gameMessage = "use begin to start game";
+    render();
+  }
 }
