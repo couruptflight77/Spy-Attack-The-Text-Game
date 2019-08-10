@@ -245,8 +245,8 @@ function playGame() {
     case "grapple": {
       const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
       if (hasLadderPlaced) {
-        const hasG = insideInventory.find(gog => gog === "goggles");
-        if (hasG === "goggles") {
+        const hasG = insideInventory.find(gog => gog === " goggles");
+        if (hasG === " goggles") {
           gameMessage =
             "You have seen in the dark you found the trapdoor type lobby for details";
           mapLocation = 1;
@@ -335,6 +335,11 @@ function playGame() {
       } else {
         break;
       }
+    }
+    case "door": {
+      gameMessage = "a door that has a gaurd in it that puts you in prison";
+      reloading = setInterval(reload, 10000);
+      break;
     }
     case "lf": {
       if (mapLocationIs === 1) {
@@ -531,8 +536,12 @@ function playGame() {
       }
     }
     case "floor3": {
-      if (condition) {
+      const floor3Entering = localStorage.getItem("airmakers3");
+      if (floor3Entering === "douglas") {
+        gameMessage = "Well done now go into the cafe with cafe";
+        break;
       } else {
+        break;
       }
     }
     case "floor4": {
@@ -1434,7 +1443,7 @@ function playGame() {
         break;
       }
     }
-    case "": {
+    case "cafe": {
     }
 
     default:
