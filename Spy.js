@@ -129,9 +129,6 @@ var action = "";
 
 var gameMessage = "";
 
-insideInventory[0] = "grapple";
-
-var Sorry = document.querySelector("#Sorry");
 var output = document.querySelector("#output");
 var input = document.querySelector("#input");
 var gameMessageDiv = document.querySelector("#text");
@@ -155,6 +152,8 @@ function playGame() {
   switch (playersInput) {
     case "begin": {
       localStorage.removeItem("startOfGame");
+      mapImage = 0;
+      insideInventory[0] = "grapple";
       gameMessage =
         "Hello Matt you can go right to the barn with r or left to the garage with l";
       break;
@@ -197,7 +196,7 @@ function playGame() {
       const canGetLadder = beenRight.find(right => right === "yes");
       if (canGetLadder) {
         mapImage = 17;
-        insideInventory[1] = "ladder";
+        insideInventory[1] = " ladder";
         gameMessage = "You got a ladder press b to go back";
         break;
       } else {
@@ -230,7 +229,7 @@ function playGame() {
     case "chance": {
       const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
       if (hasLadderPlaced) {
-        insideInventory[1] = "goggles";
+        insideInventory[1] = " goggles";
         mapImage = 21;
         gameMessage =
           "You can see in the industrial area if you can get down use climb to go back";
@@ -1441,8 +1440,12 @@ function playGame() {
 }
 function render() {
   const startOf = localStorage.getItem("startOfGame");
+  const gameCreditsOver = startedGame.find(yee => yee, "yes");
   if (startOf === "beganGame") {
-    begining.setInterval(15000, beginGame);
+    if (gameCreditsOver === "yes") {
+      begining = setInterval(beginGame, 15000);
+      startedGame[0] = "yes";
+    }
   }
   output.innerHTML = map[mapLocation];
   image.src = "images/" + images[mapImage];
@@ -1456,6 +1459,6 @@ function reload() {
   location.reload();
 }
 function beginGame() {
-  console.warn("activate");
   gameMessage = "use begin to start game";
+  render();
 }
