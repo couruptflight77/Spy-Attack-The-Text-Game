@@ -50,7 +50,7 @@ images[33] = "Untitled drawing.png";
 images[34] = "Before-Armory.jpg";
 images[35] = "Armory.jpg";
 images[36] = "credits.gif";
-images[36] = "Cafe.jpg";
+images[37] = "Cafe.jpg";
 
 var mapLocation = 8;
 
@@ -421,7 +421,6 @@ function playGame() {
         if (gridOn === "elevatorRed") {
           if (agentsKnown) {
             gameMessage = "You are now on level 3 type floor1 to see details";
-            mapLocationIs = 2;
             mapLocation = 2;
             localStorage.setItem("airmakers1", "airbus");
             break;
@@ -1220,6 +1219,7 @@ function playGame() {
         gameMessage = "Nice job you are finally on level 4 floor 2 use floor2";
         localStorage.setItem("airmakers2", "piper");
         mapImage = 28;
+        mapLocation = 3;
         break;
       } else {
         break;
@@ -1425,6 +1425,7 @@ function playGame() {
         gameMessage = "well done use floor3";
         mapImage = 4;
         localStorage.setItem("airmakers", "douglas");
+        mapLocation = 4;
         break;
       } else {
         break;
@@ -1434,6 +1435,8 @@ function playGame() {
       const findCafe = localStorage.getItem("cafeInSight");
       if (findCafe === "CoffeeAndMuffins") {
         gameMessage = "Well this is one high tech cafe";
+        mapImage = 37;
+        localStorage.setItem("cafe", "inside");
         break;
       } else {
         break;
@@ -1480,6 +1483,7 @@ function playGame() {
         localStorage.setItem("safeEightUsed", "yes");
         localStorage.setItem("safeNineUsed", "yes");
         localStorage.setItem("safeTenUsed", "yes");
+        localStorage.setItem("cafe", "inside");
         break;
       } else {
         break;
