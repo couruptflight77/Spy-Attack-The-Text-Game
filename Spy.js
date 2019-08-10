@@ -50,6 +50,7 @@ images[33] = "Untitled drawing.png";
 images[34] = "Before-Armory.jpg";
 images[35] = "Armory.jpg";
 images[36] = "credits.gif";
+images[36] = "Cafe.jpg";
 
 var mapLocation = 8;
 
@@ -1462,7 +1463,7 @@ function playGame() {
         localStorage.setItem("hall", "first");
         localStorage.setItem("hall2", "second");
         localStorage.setItem("beenLeft1", "left1");
-        localStorage.setItem("beenRight1", "Right1");
+        localStorage.setItem("beenRight1", "right1");
         localStorage.setItem("agentId", "grant");
         localStorage.setItem("accesElev", "canElev");
         localStorage.setItem("airmakers1", "airbus");
@@ -1478,7 +1479,7 @@ function playGame() {
         localStorage.setItem("hasShot", "shootToKill");
         localStorage.setItem("geared", "has gear");
         localStorage.setItem("gst", "yst");
-        localStorage.setItem("airmakers", "douglas");
+        localStorage.setItem("airmakers3", "douglas");
         localStorage.setItem("cafeInSight", "CoffeeAndMuffins");
         break;
       } else {
@@ -1492,6 +1493,7 @@ function playGame() {
   render();
 }
 function render() {
+  localStorage.removeItem("hackerHere");
   const startOf = localStorage.getItem("startOfGame");
   const gameCreditsOver = startedGame.find(yee => yee, "yes");
   if (gameCreditsOver === "yes") {
