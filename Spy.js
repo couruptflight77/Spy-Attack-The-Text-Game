@@ -53,8 +53,6 @@ images[36] = "credits.gif";
 
 var mapLocation = 8;
 
-var mapLocationIs;
-
 var reloading;
 var begining;
 
@@ -65,6 +63,17 @@ var playersInput = "";
 var commandNotFoundText = "";
 
 var commands = [];
+
+const pressed = [];
+const secretCode = "hacker";
+
+window.addEventListener("keyup", e => {
+  pressed.push(e.key);
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+  if (pressed.join("").includes(secretCode)) {
+    localStorage.setItem("hackerHere", "quickHack");
+  }
+});
 
 var startedGame = [];
 
@@ -163,20 +172,19 @@ function playGame() {
       break;
     }
     case "r": {
-      beenRight[0] = "yes";
+      localStorage.setItem("beenRight", "right");
       gameMessage = "You are in a barn get the ladder with pl or leave with b";
       mapImage = 17;
       break;
     }
     case "l": {
-      beenLeft[0] = "yes";
       gameMessage = "You are in a garage leave with b";
       mapImage = 18;
       break;
     }
     case "b": {
-      const hasLadder = insideInventory.find(inv => inv === "ladder");
-      const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
+      const hasLadder = localStorage.getItem("gotLadder");
+      const hasLadderPlaced = localStorage.getItem("ladderPlaced");
       mapImage = 0;
       {
         if (hasLadder === "ladder") {
@@ -184,7 +192,7 @@ function playGame() {
             "Hello Matt you can go right to the barn with r or left to the garage with l or your new option of using your ladder to climb up the building with ladder";
           break;
         } else {
-          if (hasLadderPlaced === "yes") {
+          if (hasLadderPlaced === "placed") {
             gameMessage =
               "Hello Matt you can go right to the barn with r or left to the garage with l or climb ladder with climb";
             break;
@@ -197,10 +205,10 @@ function playGame() {
       }
     }
     case "pl": {
-      const canGetLadder = beenRight.find(right => right === "yes");
-      if (canGetLadder) {
+      const canGetLadder = localStorage.getItem("beenRight");
+      if (canGetLadder === "right") {
         mapImage = 17;
-        insideInventory[1] = " ladder";
+        localStorage.setItem("gotLadder", "ladder");
         gameMessage = "You got a ladder use b to go back";
         break;
       } else {
@@ -208,10 +216,9 @@ function playGame() {
       }
     }
     case "ladder": {
-      const hasLadder = insideInventory.find(inv => inv === " ladder");
-      if (hasLadder === " ladder") {
-        ladderPlaced[0] = "yes";
-        delete insideInventory[1];
+      const hasLadder = localStorage.getItem("gotLadder");
+      if (hasLadder === "ladder") {
+        localStorage.setItem("ladderPlaced", "placed");
         gameMessage = "Use climb to view options";
         mapImage = 20;
         break;
@@ -220,8 +227,8 @@ function playGame() {
       }
     }
     case "climb": {
-      const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
-      if (hasLadderPlaced === "yes") {
+      const hasLadderPlaced = localStorage.getItem("ladderPlaced");
+      if (hasLadderPlaced === "placed") {
         gameMessage =
           "You are on the roof sorry about that the first level is the top and yeah well its underground the first level looks like an abandon industrial building you can try the vent with vent or go back with b or you can search the building it may be for protecting the base it may have troops in there your choice you can go in with chance or your other option of grappling down throught a missing pannel in the skylight thats painted black and does not give off light go under the black cloth and grapple down with grapple";
         mapImage = 22;
@@ -231,9 +238,9 @@ function playGame() {
       }
     }
     case "chance": {
-      const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
-      if (hasLadderPlaced) {
-        insideInventory[1] = " goggles";
+      const hasLadderPlaced = localStorage.getItem("ladderPlaced");
+      if (hasLadderPlaced === "placed") {
+        localStorage.setItem("nightVision", "greenScreen");
         mapImage = 21;
         gameMessage =
           "You can see in the industrial area if you can get down use climb to go back";
@@ -243,16 +250,14 @@ function playGame() {
       }
     }
     case "grapple": {
-      const hasLadderPlaced = ladderPlaced.find(wonder => wonder === "yes");
-      if (hasLadderPlaced) {
-        const hasG = insideInventory.find(gog => gog === " goggles");
-        if (hasG === " goggles") {
+      const hasLadderPlaced = localStorage.getItem("ladderPlaced");
+      if (hasLadderPlaced === "placed") {
+        const hasG = localStorage.getItem("nightVision");
+        if (hasG === "greenScreen") {
           gameMessage =
             "You have seen in the dark you found the trapdoor type lobby for details";
           mapLocation = 1;
-          mapLocationIs = 1;
           mapImage = 1;
-          delete insideInventory[1];
           localStorage.setItem("airmakers", "boeing");
           break;
         } else {
@@ -274,12 +279,12 @@ function playGame() {
       break;
     }
     case "lobby": {
-      if (mapLocationIs === 1) {
+      const inLobby = localStorage.getItem("airmakers");
+      if (inLobby === "boeing") {
         mapLocation = 1;
         mapImage = 1;
         gameMessage =
-          "Well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliiped upside down use lby for options and more info";
-        delete insideInventory[0];
+          "Well done you are now onto stage two of your mission get to the elevator and get onto the first floor because the building is fliped upside down use lby for options and more info";
         localStorage.setItem("inLobby", "spyLobby");
         break;
       } else {
@@ -287,7 +292,8 @@ function playGame() {
       }
     }
     case "lby": {
-      if (mapLocationIs === 1) {
+      const inLby = localStorage.getItem("airmakers");
+      if (inLby === 1) {
         mapLocation = 1;
         mapImage = 1;
         gameMessage =
@@ -298,40 +304,35 @@ function playGame() {
       }
     }
     case "uni": {
-      if (mapLocationIs === 1) {
-        mapLocation = 1;
-        mapImage = 23;
-        gameMessage = `"Well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER" they grab you you are in prison and no one frees you`;
-        reloading = setTimeout(reload, 10000);
-        break;
-      } else {
-        break;
-      }
+      mapLocation = 1;
+      mapImage = 23;
+      gameMessage = `"Well how are you YOU ARE SO DUMB THINK YOU CAN WALK BY AS ONE OF US YOUR A INTUDER" they grab you you are in prison and no one frees you`;
+      reloading = setTimeout(reload, 10000);
+      break;
     }
     case "hall": {
-      if (mapLocationIs === 1) {
+      const inHall = localStorage.getItem("airmakers");
+      if (inHall === "boeing") {
         mapLocation = 1;
         mapImage = 19;
         gameMessage =
           "You are smart the uniform probably would get you caught but you still need to walk down or enter the room to your left to walk further use forward or go into the room with door";
-        hall[0] = "yes";
+        localStorage.setItem("hall", "first");
         break;
       } else {
         break;
       }
     }
     case "forward": {
-      const hallway = hall.find(walk => walk == "yes");
-      if (mapLocationIs === 1) {
+      const hallway = localStorage.getItem("hall");
+      if (hallway === "first") {
         mapLocation = 1;
         mapImage = 16;
-        if (hallway === "yes") {
-          gameMessage =
-            "I dont know about you but i didnt feel good about that door but lets see we can go left or right or straight with strt for left use lf for right use rt";
-          break;
-        } else {
-          break;
-        }
+        localStorage.setItem("hall2", "second");
+        localStorage.setItem("accessElev", "canElev");
+        gameMessage =
+          "I dont know about you but i didnt feel good about that door but lets see we can go left or right or straight with strt for left use lf for right use rt";
+        break;
       } else {
         break;
       }
@@ -342,47 +343,47 @@ function playGame() {
       break;
     }
     case "lf": {
-      if (mapLocationIs === 1) {
+      const hall2Yes = localStorage.getItem("hall2");
+      if (hall2Yes === "second") {
         mapLocation = 1;
         mapImage = 8;
         gameMessage =
           "You are in a room with a comm to each agent and a video camera station use video for cameras or comm for the comm";
-        beenLeft1[0] = "yes";
+        localStorage.setItem("beenLeft1", "left1");
         break;
       } else {
         break;
       }
     }
     case "rt": {
-      if (mapLocationIs === 1) {
+      const hall2Yes = localStorage.getItem("hall2");
+      if (hall2Yes === "second") {
         mapLocation = 1;
         mapImage = 9;
+        localStorage.setItem("beenRight1", "Right1");
         gameMessage =
           "You are in the elevator grid press the green button with green or the red button with red";
-        beenRight1[0] = "yes";
+
         break;
       } else {
         break;
       }
     }
     case "strt": {
-      if (mapLocationIs === 1) {
-        mapLocation = 1;
-        mapImage = 1;
-        gameMessage =
-          "Man why do traps have to be so common you step on a part of the carpet and chains suround you, you are stuck in prison";
-        reloading = setTimeout(reload, 10000);
-        break;
-      } else {
-        break;
-      }
+      mapLocation = 1;
+      mapImage = 1;
+      gameMessage =
+        "Man why do traps have to be so common you step on a part of the carpet and chains suround you, you are stuck in prison";
+      reloading = setTimeout(reload, 10000);
+      break;
     }
     case "comm": {
-      const agentsKnown = knowAgents.find(gnt => gnt == "yes");
-      if (mapLocationIs === 1) {
+      const agentsKnown = localStorage.getItem("agentId");
+      const canComm = localStorage.getItem("beenLeft1");
+      if (canComm === "left1") {
         mapLocation = 1;
         mapImage = 8;
-        if (agentsKnown === "yes") {
+        if (agentsKnown === "grant") {
           gameMessage =
             "There gone you can try to go throught the elevators with elev or go back to the hall with forward";
           break;
@@ -397,23 +398,26 @@ function playGame() {
       }
     }
     case "video": {
-      if (mapLocationIs === 1) {
+      const canVideo = localStorage.getItem("beenLeft1");
+      if (canVideo === "left1") {
         mapLocation = 1;
         mapImage = 8;
         gameMessage =
           "The two agents are agent lightman and agent grant wait you think man am i am so lucky agent grant would recognise me use comm to tell them to go on a suitable mission";
-        knowAgents[0] = "yes";
+        localStorage.setItem("agentId", "grant");
         break;
       } else {
         break;
       }
     }
     case "elev": {
-      const agentsKnown = knowAgents.find(gnt => gnt == "yes");
-      if (mapLocationIs === 1) {
+      const canElev = localStorage.getItem("accessElev");
+      const agentsKnown = localStorage.getItem("agentId");
+      const gridOn = localStorage.getItem("elevatorActivated");
+      if (canElev === "canElev") {
         mapLocation = 1;
         mapImage = 25;
-        if (gridOn) {
+        if (gridOn === "elevatorRed") {
           if (agentsKnown) {
             gameMessage = "You are now on level 3 type floor1 to see details";
             mapLocationIs = 2;
@@ -443,19 +447,19 @@ function playGame() {
       }
     }
     case "red": {
-      const beenRight1A = beenRight1.find(br1 => br1 === "yes");
-      if (beenRight1A === "yes") {
+      const beenRight1A = localStorage.getItem("beenRight1");
+      if (beenRight1A === "right1") {
         mapImage = 9;
         gameMessage =
           "Why would you press a red button wait thats right because green is a trap the elevator that isn't damaged is now online try the elevator with elev or go back to the hallway with forward";
-        gridOn[0] = "yes";
+        localStorage.setItem("elevatorActivated", "elevatorRed");
         break;
       } else {
         break;
       }
     }
     case "green": {
-      const beenLeft1A = beenLeft1.find(bl1 => bl1 === "yes");
+      const beenLeft1A = localStorage.getItem("beenRight1", "right1");
       if (beenLeft1A) {
         mapImage = 9;
         gameMessage =
@@ -467,23 +471,23 @@ function playGame() {
       }
     }
     case "floor1": {
-      if ((mapLocationIs = 2)) {
+      const canBeOnF1 = localStorage.getItem("airmakers1");
+      if (canBeOnF1 === "airbus") {
         mapLocation = 2;
         mapImage = 2;
         gameMessage =
           "You walk into a room you can use the hatch with hatch or the door labeled genetics testing with gt";
-        delete keyHere[0];
         break;
       } else {
         break;
       }
     }
     case "gt": {
-      if (mapLocationIs === 2) {
+      const canBeOnF1a = localStorage.getItem("airmakers1");
+      if (canBeOnF1a === "airbus") {
         gameMessage =
           "What is this there are computer monitors you can leave with floor1 or go throught the door labeled floor 1 with door1";
-        gtlab[0] = "yes";
-        keyHere[0] = "yes";
+        localStorage.setItem("labHere", "labGt");
         mapImage = 10;
         break;
       } else {
@@ -539,6 +543,7 @@ function playGame() {
       const floor3Entering = localStorage.getItem("airmakers3");
       if (floor3Entering === "douglas") {
         gameMessage = "Well done now go into the cafe with cafe";
+        localStorage.setItem("cafeInSight", "CoffeeAndMuffins");
         break;
       } else {
         break;
@@ -631,33 +636,25 @@ function playGame() {
       }
     }
     case "door1": {
-      const gtl = gtlab.find(lab => lab === "yes");
-      if (mapLocationIs === 2) {
-        if (gtl === "yes") {
-          gameMessage =
-            "Well this is floor 1 it apears to be abandon but this level has no elevators down but there is stairs to the next level type doorinfo for more info";
-        } else {
-          break;
-        }
+      const gtl = localStorage.getItem("labHere");
+      if (gtl === "labGt") {
+        gameMessage =
+          "Well this is floor 1 it apears to be abandon but this level has no elevators down but there is stairs to the next level type doorinfo for more info";
         break;
       }
     }
     case "doorinfo": {
-      const gtl = gtlab.find(lab => lab === "yes");
-      if (mapLocationIs === 2) {
-        if (gtl === "yes") {
-          gameMessage =
-            "you can go to the first door with dr1 or the other door with dr2";
-          break;
-        } else {
-          break;
-        }
+      const gtl = localStorage.getItem("labHere");
+      if (gtl === "yes") {
+        gameMessage =
+          "you can go to the first door with dr1 or the other door with dr2";
+        break;
       } else {
         break;
       }
     }
     case "dr1": {
-      const gtl = gtlab.find(lab => lab === "yes");
+      const gtl = localStorage.getItem("labHere");
       if (gtl === "yes") {
         gameMessage =
           "You walk down a walkway and find a massive hall lucky for you its not in progress go to dr2 with dr2";
@@ -668,7 +665,7 @@ function playGame() {
       }
     }
     case "dr2": {
-      const gtl = gtlab.find(lab1 => lab1 === "yes");
+      const gtl = localStorage.getItem("labHere");
       const safedone = safesdone.find(cfd => cfd === "yes");
       const StairKeyhas = safeStairKey.find(labsf => labsf === "yes");
       if (gtl === "yes") {
@@ -1268,7 +1265,7 @@ function playGame() {
       mapImage = 12;
       gameMessage =
         "well this is a very strange sight a huge area you check the small screen this is extremly unsettiling they need a grid of 100 by 100 super servers what the hell is going on you check the screen and you tap your armband to it what there is 1 geobyte it shouldn't be possible that much data would require servers that would cover earth 23,000,000 times for more info use geobyte";
-      geobyteFound[0] = "yes";
+      localStorage.setItem("geobyte", "geoFound");
       break;
     }
     case "geobyte": {
@@ -1282,19 +1279,19 @@ function playGame() {
       }
     }
     case "geobytes-": {
-      var tenGeobytes = geobyteFound.find(geo => geo === "yes");
-      if (tenGeobytes === "yes") {
+      var tenGeobytes = localStorage.getItem("geobyte");
+      if (tenGeobytes === "geoFound") {
         gameMessage =
           "you can try to break the wires with cut or go throught door using drt";
-        gegabytes[0] = "yes";
+        localStorage.setItem("gegabyte", "gegaFound");
         break;
       } else {
         break;
       }
     }
     case "cut": {
-      const gegabytes10 = gegabytes.find(geg => geg === "yes");
-      if (gegabytes10 === "yes") {
+      const gegabytes10 = localStorage.getItem("gegabyte");
+      if (gegabytes10 === "gegaFound") {
         gameMessage =
           "Well i mean of course we need to show you the wire grid with grid";
         break;
@@ -1303,9 +1300,10 @@ function playGame() {
       }
     }
     case "drt": {
-      const gegabytes10 = gegabytes.find(geg => geg === "yes");
-      if (gegabytes10 === "yes") {
+      const gegabytes10 = localStorage.getItem("gegabyte");
+      if (gegabytes10 === "gegaFound") {
         mapImage = 34;
+        localStorage.setItem("gegahall", "yes");
         gameMessage =
           "What is this an armory well about time you can go throught the first door with armor of the next door with battle did i tell you that there is a battle arena throught the next door it leads down to the next floor";
         break;
@@ -1321,7 +1319,7 @@ function playGame() {
       break;
     }
     case "armor": {
-      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      const gegabytes10 = localStorage.getItem("gegahall");
       if (gegabytes10 === "yes") {
         mapImage = 35;
         gameMessage =
@@ -1332,7 +1330,7 @@ function playGame() {
       }
     }
     case "gear": {
-      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      const gegabytes10 = localStorage.getItem("gegahall");
       if (gegabytes10 === "yes") {
         mapImage = 35;
         gameMessage =
@@ -1345,7 +1343,7 @@ function playGame() {
     }
     case "battle": {
       const attacking = localStorage.getItem("geared");
-      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      const gegabytes10 = localStorage.getItem("gegahall");
       if (gegabytes10 === "yes") {
         if (attacking === "has gear") {
           gameMessage =
@@ -1362,7 +1360,7 @@ function playGame() {
       }
     }
     case "shoot": {
-      const gegabytes10 = gegabytes.find(geg => geg === "yes");
+      const gegabytes10 = localStorage.getItem("gegahall");
       const shotdead = localStorage.getItem("shooting");
       if (gegabytes10 === "yes") {
         if (shotdead === "yes") {
@@ -1444,6 +1442,48 @@ function playGame() {
       }
     }
     case "cafe": {
+      const findCafe = localStorage.getItem("cafeInSight");
+      if (findCafe === "CoffeeAndMuffins") {
+        gameMessage = "";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "quickhack": {
+      const localHack = localStorage.getItem("hackerHere");
+      if (localHack === "quickHack") {
+        localStorage.clear();
+        localStorage.setItem("airmakers", "boeing");
+        localStorage.setItem("inLobby", "spyLobby");
+        localStorage.setItem("beenRight", "right");
+        localStorage.setItem("gotLadder", "ladder");
+        localStorage.setItem("ladderPlaced", "placed");
+        localStorage.setItem("hall", "first");
+        localStorage.setItem("hall2", "second");
+        localStorage.setItem("beenLeft1", "left1");
+        localStorage.setItem("beenRight1", "Right1");
+        localStorage.setItem("agentId", "grant");
+        localStorage.setItem("accesElev", "canElev");
+        localStorage.setItem("airmakers1", "airbus");
+        localStorage.setItem("labHere", "labGt");
+        localStorage.setItem("safeInventoryHasArmband", "Armband");
+        localStorage.setItem("safeInventoryHasVoice", "Voice");
+        localStorage.setItem("safeInventoryHasUsb", "Usb");
+        localStorage.setItem("airmakers2", "piper");
+        localStorage.setItem("axeUsed", "use");
+        localStorage.setItem("geobyte", "geoFound");
+        localStorage.setItem("gegabyte", "gegaFound");
+        localStorage.setItem("gegahall", "yes");
+        localStorage.setItem("hasShot", "shootToKill");
+        localStorage.setItem("geared", "has gear");
+        localStorage.setItem("gst", "yst");
+        localStorage.setItem("airmakers", "douglas");
+        localStorage.setItem("cafeInSight", "CoffeeAndMuffins");
+        break;
+      } else {
+        break;
+      }
     }
 
     default:
