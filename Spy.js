@@ -54,6 +54,8 @@ images[37] = "Cafe.jpg";
 images[38] = "DoorLock.jpg";
 images[39] = "Bcafe.png";
 images[40] = "SystemChecked.jpg";
+images[41] = "Hanger.jpg";
+// images[42] = "SystemChecked.jpg";
 
 var mapLocation = 8;
 
@@ -170,7 +172,6 @@ function playGame() {
       mapLocation = 0;
       localStorage.removeItem("startOfGame");
       mapImage = 0;
-      insideInventory[0] = "grapple";
       gameMessage =
         "Hello Matt you can go right to the barn with r or left to the garage with l";
       break;
@@ -297,7 +298,7 @@ function playGame() {
     }
     case "lby": {
       const inLby = localStorage.getItem("airmakers");
-      if (inLby === 1) {
+      if (inLby === "boeing") {
         mapLocation = 1;
         mapImage = 1;
         gameMessage =
@@ -388,6 +389,7 @@ function playGame() {
         mapLocation = 1;
         mapImage = 8;
         if (agentsKnown === "grant") {
+          localStorage.setItem("agentComm", "commUsed");
           gameMessage =
             "There gone you can try to go throught the elevators with elev or go back to the hall with forward";
           break;
@@ -417,16 +419,23 @@ function playGame() {
     case "elev": {
       const canElev = localStorage.getItem("accessElev");
       const agentsKnown = localStorage.getItem("agentId");
+      const agentsComm = localStorage.getItem("agentComm");
       const gridOn = localStorage.getItem("elevatorActivated");
       if (canElev === "canElev") {
         mapLocation = 1;
         mapImage = 25;
         if (gridOn === "elevatorRed") {
           if (agentsKnown) {
-            gameMessage = "You are now on level 3 type floor1 to see details";
-            mapLocation = 2;
-            localStorage.setItem("airmakers1", "airbus");
-            break;
+            if (agentsComm === "commUsed") {
+              gameMessage =
+                "You forgot that there are agents there right now you have a bigger problem you are in prison";
+              gameMessage = "You are now on level 3 type floor1 to see details";
+              mapLocation = 2;
+              localStorage.setItem("airmakers1", "airbus");
+              break;
+            } else {
+              break;
+            }
           } else {
             gameMessage =
               "You forgot that there are agents there right now you have a bigger problem you are in prison";
@@ -1503,6 +1512,7 @@ function playGame() {
           "look at that use lock to use you items if you dont then you will lose lcklok to look at the lock";
         localStorage.setItem("lockFound", "lockSecurity");
         localStorage.setItem("lockChecking", "lockSystemsChecking");
+        mapImage = 39;
         break;
       } else {
         break;
@@ -1522,6 +1532,7 @@ function playGame() {
               localStorage.removeItem("safeInventoryHasFace");
               localStorage.removeItem("safeInventoryHasVoice");
               localStorage.removeItem("safeInventoryHasArmband");
+              mapImage = 40;
               break;
             } else {
               gameMessage = "Man you forgot to get one of the safes";
@@ -1544,11 +1555,23 @@ function playGame() {
       const securitySystem = localStorage.getItem("lockSecurity");
       if (lockUse === "lockSecurity") {
         if (securitySystem === "activated") {
-          gameMessage = "well you are in";
+          gameMessage =
+            "well you are in the next room that apears to have heaps of ships use hanger";
+          localStorage.setItem("hanger", "F22");
+          mapImage = 38;
           break;
         } else {
           break;
         }
+      } else {
+        break;
+      }
+    }
+    case "hanger": {
+      const hangerHere = localStorage.getItem("hanger");
+      if (hangerHere === "F22") {
+        gameMessage = `["Man you've got to get out of here" the man who is telling you all this] ("what why not blow this place up" you say) ["well you would probably die and the police wouldnt be happy yeah they frown upon blowing things up" the man replied "use hangelev"] (''you could use blow to blow up the place'' you think) `;
+        mapImage = 41;
         break;
       } else {
         break;
@@ -1596,6 +1619,9 @@ function playGame() {
         localStorage.setItem("cafe", "inside");
         localStorage.setItem("cafeInSight", "CoffeeAndMuffins");
         localStorage.setItem("lockSecurity", "activated");
+        localStorage.setItem("lockFound", "lockSecurity");
+        localStorage.setItem("lockChecking", "lockSystemsChecking");
+        localStorage.setItem("hanger", "F22");
         break;
       } else {
         break;
