@@ -1454,9 +1454,18 @@ function playGame() {
       const bCoffee = localStorage.getItem("cafe");
       if (bCoffee === "inside") {
         gameMessage = "look at that use lcklok to look at the lock";
+        localStorage.setItem("lockFound", "lockSecurity");
         break;
       } else {
-        beenRight;
+        break;
+      }
+    }
+    case "lcklok": {
+      const lockUse = localStorage.getItem("lockFound");
+      if (lockUse === "lockSecurity") {
+        break;
+      } else {
+        break;
       }
     }
     case "quickhack": {
