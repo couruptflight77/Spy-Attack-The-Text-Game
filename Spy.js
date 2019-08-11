@@ -53,6 +53,7 @@ images[36] = "credits.gif";
 images[37] = "Cafe.jpg";
 images[38] = "DoorLock.jpg";
 images[39] = "Bcafe.png";
+images[40] = "SystemChecked.jpg";
 
 var mapLocation = 8;
 
@@ -669,10 +670,50 @@ function playGame() {
     case "dr2": {
       const gtl = localStorage.getItem("labHere");
       const safedone = localStorage.getItem("safeUsed");
-      const StairKeyhas = safeStairKey.find(labsf => labsf === "yes");
+      const StairKeyhas = localStorage.getItem("stKey");
+      const itemInInventory1 = localStorage.getItem("safeInventoryHasFace");
+      const itemInInventory2 = localStorage.getItem("safeInventoryHasVoice");
+      const itemInInventory3 = localStorage.getItem("safeInventoryHasArmband");
+      const itemInInventory4 = localStorage.getItem("safeInventoryHasUsb");
       if (gtl === "yes") {
         if (safedone === "keysUsed") {
-          if (StairKeyhas === "yes") {
+          if (itemInInventory1 === "face") {
+            if (itemInInventory2 === "Voice") {
+              if (itemInInventory3 === "Armband") {
+                if (itemInInventory4 === "Usb") {
+                } else {
+                  localStorage.removeItem("safeInventoyHasFace");
+                  localStorage.removeItem("safeInventoyHasVoice");
+                  localStorage.removeItem("safeInventoyHasArmband");
+                  localStorage.removeItem("safeInventoyHasUsb");
+                  localStorage.removeItem("safeUsed");
+                  gameMessage = "dr2";
+                }
+              } else {
+                localStorage.removeItem("safeInventoyHasFace");
+                localStorage.removeItem("safeInventoyHasVoice");
+                localStorage.removeItem("safeInventoyHasArmband");
+                localStorage.removeItem("safeInventoyHasUsb");
+                localStorage.removeItem("safeUsed");
+                gameMessage = "dr2";
+              }
+            } else {
+              localStorage.removeItem("safeInventoyHasFace");
+              localStorage.removeItem("safeInventoyHasVoice");
+              localStorage.removeItem("safeInventoyHasArmband");
+              localStorage.removeItem("safeInventoyHasUsb");
+              localStorage.removeItem("safeUsed");
+              gameMessage = "dr2";
+            }
+          } else {
+            localStorage.removeItem("safeInventoyHasFace");
+            localStorage.removeItem("safeInventoyHasVoice");
+            localStorage.removeItem("safeInventoyHasArmband");
+            localStorage.removeItem("safeInventoyHasUsb");
+            localStorage.removeItem("safeUsed");
+            gameMessage = "dr2";
+          }
+          if (StairKeyhas === "safeHasKey") {
             gameMessage = "Wow how good are you, you can use skey";
             mapImage = "28";
             break;
@@ -913,6 +954,7 @@ function playGame() {
           localStorage.removeItem("keyOne");
           localStorage.setItem("safeFiveUsed", "yes");
           localStorage.setItem("safeInventoryHasVoice", "Voice");
+          localStorage.setItem("safeInventoryHasFace", "Face");
           break;
         } else {
           if (howManyKeysIn1 === "1") {
@@ -921,6 +963,7 @@ function playGame() {
             localStorage.removeItem("keyTwo");
             localStorage.setItem("safeFiveUsed", "yes");
             localStorage.setItem("safeInventoryHasVoice", "Voice");
+            localStorage.setItem("safeInventoryHasFace", "Face");
             break;
           } else {
             if (howManyKeysIn2 === "1") {
@@ -929,6 +972,7 @@ function playGame() {
               localStorage.removeItem("keyThree");
               localStorage.setItem("safeFiveUsed", "yes");
               localStorage.setItem("safeInventoryHasVoice", "Voice");
+              localStorage.setItem("safeInventoryHasFace", "Face");
               break;
             } else {
               if (howManyKeysIn3 === "1") {
@@ -937,6 +981,7 @@ function playGame() {
                 localStorage.removeItem("keyFour");
                 localStorage.setItem("safeFiveUsed", "yes");
                 localStorage.setItem("safeInventoryHasVoice", "Voice");
+                localStorage.setItem("safeInventoryHasFace", "Face");
                 break;
               } else {
                 if (howManyKeysIn4 === "1") {
@@ -945,6 +990,7 @@ function playGame() {
                   localStorage.removeItem("keyFive");
                   localStorage.setItem("safeFiveUsed", "yes");
                   localStorage.setItem("safeInventoryHasVoice", "Voice");
+                  localStorage.setItem("safeInventoryHasFace", "Face");
                   break;
                 } else {
                   break;
@@ -1453,16 +1499,56 @@ function playGame() {
     case "cafeb": {
       const bCoffee = localStorage.getItem("cafe");
       if (bCoffee === "inside") {
-        gameMessage = "look at that use lcklok to look at the lock";
+        gameMessage =
+          "look at that use lock to use you items if you dont then you will lose lcklok to look at the lock";
         localStorage.setItem("lockFound", "lockSecurity");
+        localStorage.setItem("lockChecking", "lockSystemsChecking");
         break;
+      } else {
+        break;
+      }
+    }
+    case "lock": {
+      const lockCheckingReady = localStorage.getItem("lockChecking");
+      const systemOne = localStorage.getItem("safeInventoryHasFace");
+      const systemTwo = localStorage.getItem("safeInventoryHasVoice");
+      const systemThree = localStorage.getItem("safeInventoryHasArmband");
+      if (lockCheckingReady === "lockSystemsChecking") {
+        if (systemOne === "Face") {
+          if (systemTwo === "Voice") {
+            if (systemThree === "Armband") {
+              gameMessage = "You are killing it you have everything you need";
+              localStorage.setItem("lockSecurity", "activated");
+              localStorage.removeItem("safeInventoryHasFace");
+              localStorage.removeItem("safeInventoryHasVoice");
+              localStorage.removeItem("safeInventoryHasArmband");
+              break;
+            } else {
+              gameMessage = "Man you forgot to get one of the safes";
+              break;
+            }
+          } else {
+            gameMessage = "Man you forgot to get one of the safes";
+            break;
+          }
+        } else {
+          gameMessage = "Man you forgot to get one of the safes";
+          break;
+        }
       } else {
         break;
       }
     }
     case "lcklok": {
       const lockUse = localStorage.getItem("lockFound");
+      const securitySystem = localStorage.getItem("lockSecurity");
       if (lockUse === "lockSecurity") {
+        if (securitySystem === "activated") {
+          gameMessage = "well you are in";
+          break;
+        } else {
+          break;
+        }
         break;
       } else {
         break;
@@ -1472,21 +1558,14 @@ function playGame() {
       const localHack = localStorage.getItem("hackerHere");
       if (localHack === "quickHack") {
         localStorage.clear();
-        // localStorageReviveCodes
         localStorage.setItem("airmakers", "boeing");
         localStorage.setItem("airmakers1", "airbus");
         localStorage.setItem("airmakers2", "piper");
         localStorage.setItem("airmakers3", "douglas");
-        // localStorageReviveCodes
-        // localStorageLevelBreak
-        // localStorageLevel1
         localStorage.setItem("beenRight", "right");
         localStorage.setItem("gotLadder", "ladder");
         localStorage.setItem("ladderPlaced", "placed");
         localStorage.setItem("nightVision", "greenScreen");
-        // localStorageLevel1
-        // localStorageLevelBreak
-        // localStorageLevel2
         localStorage.setItem("beenRight1", "right1");
         localStorage.setItem("beenLeft1", "left1");
         localStorage.setItem("inLobby", "spyLobby");
@@ -1494,18 +1573,9 @@ function playGame() {
         localStorage.setItem("hall2", "second");
         localStorage.setItem("agentId", "grant");
         localStorage.setItem("accesElev", "canElev");
-        // localStorageLevel2
-        // localStorageLevelBreak
-        // localStorageLevel3
         localStorage.setItem("labHere", "labGt");
-        // localStorageSafeStorage
-        localStorage.setItem("safeInventoryHasArmband", "Armband");
-        localStorage.setItem("safeInventoryHasVoice", "Voice");
         localStorage.setItem("safeInventoryHasUsb", "Usb");
         localStorage.setItem("axeUsed", "use");
-        // localStorageSafeStorage
-        //
-        // localStorageSafeUsed
         localStorage.setItem("safeOneUsed", "yes");
         localStorage.setItem("safeTwoUsed", "yes");
         localStorage.setItem("safeThreeUsed", "yes");
@@ -1517,29 +1587,15 @@ function playGame() {
         localStorage.setItem("safeNineUsed", "yes");
         localStorage.setItem("safeTenUsed", "yes");
         localStorage.setItem("safeUsed", "keysUsed");
-        // localStorageSafeUsed
-        //
-        // localStorageLevel3
-        // localStorageLevelBreak
-        // localStorageLevel4
         localStorage.setItem("geobyte", "geoFound");
         localStorage.setItem("gegabyte", "gegaFound");
         localStorage.setItem("hasShot", "shootToKill");
         localStorage.setItem("gegahall", "yes");
         localStorage.setItem("geared", "has gear");
         localStorage.setItem("gst", "yst");
-        // localStorageLevel4
-        // localStorageLevelBreak
-        // localStorageLevel5
         localStorage.setItem("cafe", "inside");
         localStorage.setItem("cafeInSight", "CoffeeAndMuffins");
-        // localStorageLevel5
-        // localStorageLevelBreak
-        // localStorageLevel6
-        // localStorageLevel6
-        // localStorageLevelBreak
-        // localStorageLevel7
-        // localStorageLevel7
+        localStorage.setItem("lockSecurity", "activated");
         break;
       } else {
         break;
