@@ -1577,6 +1577,15 @@ function playGame() {
         break;
       }
     }
+    case "hanger": {
+      const hangerHere = localStorage.getItem("hanger");
+      if (hangerHere === "F22") {
+        gameMessage = `["Man you've got to get out of here" the man who is telling you all this] ("what why not blow this place up" you say) ["well you would probably die and the police wouldnt be happy yeah they frown upon blowing things up" the man replied "use hangelev"] (''you could use blow to blow up the place'' you think) `;
+        break;
+      } else {
+        break;
+      }
+    }
     case "quickhack": {
       const localHack = localStorage.getItem("hackerHere");
       if (localHack === "quickHack") {
