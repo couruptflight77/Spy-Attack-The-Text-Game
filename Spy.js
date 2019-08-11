@@ -1547,6 +1547,7 @@ function playGame() {
           gameMessage =
             "well you are in the next room that apears to have heaps of ships use hanger";
           localStorage.setItem("hanger", "F22");
+          mapImage = 38;
           break;
         } else {
           break;
@@ -1559,7 +1560,6 @@ function playGame() {
     case "hanger": {
       const hangerHere = localStorage.getItem("hanger");
       if (hangerHere === "F22") {
-        mapImage = 38;
         gameMessage = `["Man you've got to get out of here" the man who is telling you all this] ("what why not blow this place up" you say) ["well you would probably die and the police wouldnt be happy yeah they frown upon blowing things up" the man replied "use hangelev"] (''you could use blow to blow up the place'' you think) `;
         break;
       } else {
