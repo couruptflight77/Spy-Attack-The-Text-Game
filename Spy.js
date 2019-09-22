@@ -55,7 +55,8 @@ images[38] = "DoorLock.jpg";
 images[39] = "Bcafe.png";
 images[40] = "SystemChecked.jpg";
 images[41] = "Hanger.jpg";
-// images[42] = "SystemChecked.jpg";
+images[42] = "typhoonjet.jphg";
+// images[43] = "SystemChecked.jpg";
 
 var mapLocation = 8;
 
@@ -1570,17 +1571,37 @@ function playGame() {
     case "hanger": {
       const hangerHere = localStorage.getItem("hanger");
       if (hangerHere === "F22") {
-        gameMessage = `["Man you've got to get out of here" the man who is telling you all this] ("what why not blow this place up" you say) ["well you would probably die and the police wouldnt be happy yeah they frown upon blowing things up" the man replied "use hangelev"] (''you could use blow to blow up the place'' you think) `;
+        gameMessage = `["Man you've got to get out of here" said the man who is telling you all this] ("what why not blow this place up" you say) ["well you would probably die and the police wouldnt be happy yeah they frown upon blowing things up" the man replied "use hangelev"] (''you could blow this place to rubble with bomby to up the place'' you think) `;
         mapImage = 41;
+        localStorage.setItem("inHanger", "plzLeave");
+        localStorage.setItem("Explosive set", "Explosive armed");
         break;
       } else {
         break;
       }
     }
-    case "hanger": {
-      const hangerHere = localStorage.getItem("hanger");
-      if (hangerHere === "F22") {
-        gameMessage = `["Man you've got to get out of here" the man who is telling you all this] ("what why not blow this place up" you say) ["well you would probably die and the police wouldnt be happy yeah they frown upon blowing things up" the man replied "use hangelev"] (''you could use blow to blow up the place'' you think) `;
+    case "hangelev": {
+      const elevUsed = localStorage.getItem("inHanger");
+      if (elevUsed === "plzLeave") {
+        gameMessage = "";
+        break;
+      } else {
+        break;
+      }
+    }
+    case "bomby": {
+      var blowingUpTheCia = localStorage.getItem("Explosive set");
+      if (blowingUpTheCia === "Explosive armed") {
+        gameMessage = `["you were not hired to do that idiot now i have to send you to our jail just after you blew up the my hanger"] ("what the hell do you mean") ["suprise you broke into my spy base to test its defences"] ("why did you put a ladder in the barn the goggles in the watch room the trapdoor not covered by hay") ["well if your super secure base has been ambushed and taken over you dont want to have to charge right through the door"] ("and thats why the elevators were broke" you were cut off) [he cut you off "no there just terrible and i had to make sure that each floor was secure did you wonder why grant was there"] (you escape throught the final door and a gapping hole right in front of the last plane surviving in the hanger you try to leave) use bombyflight`;
+        localStorage.setItem("flight", "illegalflying");
+        break;
+      }
+      break;
+    }
+    case "bombyflight": {
+      var flyingIllegally = localStorage.getItem("flight");
+      if (flyingIllegally === "illegalflying") {
+        gameMessage = `well thats crazy you look behind you and see planes coming out of the mountain to the left of the building you realise that the side you started is the side your facing well now its time to escape (the plane starts to dive) what the hell (you slam the throttle forward) (it has no effect your instuments are blank) where are my instruments wait (you flick the battery master switch to on) there (your altitude is 10000 feet with a desent ratio incresing you have if you do nothing 20 seconds till impact) wait what (you turn the engine restart switch to on) (the engines start splutering) (you put the engines to idle and the fuel flow and switch hydraulics on) "terrain pull up, too low terrain" (you pull up on the joystick you now are at 10 feet above sea level acording to your altimeter) (your speed is slowly speeding up in its decrease rate you push your throttles to full and dd 5 degree flaps and you pull up 10 degrees you here your engines hit the water dam it your engines have now got 10% efficiency so now 100% engine power with afterburner is now 10% engine power but every minute the engines gains 1% efficiency at 100% with after burner but uses a lot of fuel you check the fuel and see that it will be 89 minuts till full effectiveness but you see at this rate you lose all your fuel in 80 minutes at 100% throttle without aftter burner you will run out of fuel in 160 minutes but it will take 170 minutes for full effectiveness)`;
         break;
       } else {
         break;
@@ -1631,6 +1652,12 @@ function playGame() {
         localStorage.setItem("lockFound", "lockSecurity");
         localStorage.setItem("lockChecking", "lockSystemsChecking");
         localStorage.setItem("hanger", "F22");
+        localStorage.setItem("inHanger", "plzLeave");
+        localStorage.setItem("Explosive set", "Explosive armed");
+        localStorage.setItem("flight", "illegalflying");
+        console.error(
+          `Hacker Warning. Hacks Are detected. Are you the hacker? If so please walk right into the building because you are invinceble`
+        );
         break;
       } else {
         break;
